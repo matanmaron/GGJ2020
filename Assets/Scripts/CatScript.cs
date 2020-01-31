@@ -40,40 +40,23 @@ public class CatScript : MonoBehaviour
     {
         if (_changeFace)
         {
-            StartCoroutine(Turn());
+            if (_face == Face.Left)
+            {
+                if (IsDebug) { Debug.Log("cat turn left"); }
+
+                //0 to 180
+                transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
+            else if (_face == Face.Right)
+            {
+                if (IsDebug) { Debug.Log("cat turn right"); }
+                //180 t0 0
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
             _changeFace = false;
         }
     }
 
-    IEnumerator Turn()
-    {
-        Quaternion q = transform.rotation;
-        if (_face == Face.Left)
-        {
-            if (IsDebug) { Debug.Log("cat turn left"); }
-
-            //0 to 180
-            for (int i = 1; i < 181; i++)
-            {
-                q.y += 1f;
-                transform.rotation = q;
-            }
-        }
-        else if (_face == Face.Right)
-        {
-            if (IsDebug) { Debug.Log("cat turn right"); }
-            //180 t0 0
-            for (int i = 1; i < 181; i++)
-            {
-                q.y -= 1f;
-                transform.rotation = q;
-            }
-        }
-        
-        yield return new WaitForSeconds(0.001f);
-        _changeFace = false;
-    }
-    
     private void ChangeMove()
     {
         var move = false;

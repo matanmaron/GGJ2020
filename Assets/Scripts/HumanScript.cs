@@ -12,6 +12,9 @@ public class HumanScript : MonoBehaviour
     private KeyCode _keyleft;
     private KeyCode _keyrigth;
     private bool stoped = true;
+    private Face _face = Face.Left;
+    private bool _changeFace = false;
+    
     void Start()
     {
         if (IsDebug) { Debug.Log("*** HumanScript debug is on ***"); }
@@ -28,8 +31,30 @@ public class HumanScript : MonoBehaviour
     void LateUpdate()
     {
         Move();
+        ChangeFace();
     }
 
+    private void ChangeFace()
+    {
+        if (_changeFace)
+        {
+            if (_face == Face.Left)
+            {
+                if (IsDebug) { Debug.Log("human turn left"); }
+
+                //0 to 180
+                transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
+            else if (_face == Face.Right)
+            {
+                if (IsDebug) { Debug.Log("human turn right"); }
+                //180 t0 0
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+            _changeFace = false;
+        }
+    }
+    
     private void Move()
     {
         var move = false;
@@ -39,6 +64,8 @@ public class HumanScript : MonoBehaviour
             _rigidbody2D.velocity = new Vector2(Speed * -1, _rigidbody2D.velocity.y);
             stoped = false;
             move = true;
+            _face = Face.Left;
+            _changeFace = true;
         }
         if (Input.GetKey(_keyrigth))
         {
@@ -46,6 +73,8 @@ public class HumanScript : MonoBehaviour
             _rigidbody2D.velocity = new Vector2(Speed, _rigidbody2D.velocity.y);
             stoped = false;
             move = true;
+            _face = Face.Right;
+            _changeFace = true;
         }
 
         if (!move && !stoped)
