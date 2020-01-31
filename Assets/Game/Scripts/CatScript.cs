@@ -16,6 +16,8 @@ public class CatScript : MonoBehaviour
     private Animator _animator;
     private KeyCode _keyleft;
     private KeyCode _keyrigth;
+    private KeyCode _keyup;
+    private KeyCode _keydown;
     private KeyCode _keyjump;
     private KeyCode _keyAction;
     private bool _stoped = true;
@@ -38,6 +40,8 @@ public class CatScript : MonoBehaviour
         if (IsDebug && _animator == null) { Debug.Log("cannot find cat Animator"); }
         _keyleft = _gameManager.CatLeft;
         _keyrigth = _gameManager.CatRight;
+        _keyup = _gameManager.CatUp;
+        _keydown = _gameManager.CatDown;
         _keyjump = _gameManager.CatJump;
         _keyAction = _gameManager.CatAction;
         _animator.Play("Idle");
@@ -131,22 +135,42 @@ public class CatScript : MonoBehaviour
     
     void OnTriggerStay2D(Collider2D other)
     {
-        if (IsDebug) { Debug.Log($"cat colliding with {other.gameObject.name}"); }
-
-        if (!Input.GetKey(_keyAction) && Input.anyKey)
+        //if (IsDebug) { Debug.Log($"cat colliding with {other.gameObject.name}"); }
+        if (other.gameObject.tag == "ladder")
         {
-            if (IsDebug) { Debug.Log($"breaking stops !!!"); }
-
-            StopCoroutine(BreakStuff(other));
-            _breakSuccess = false;
-            Icon.SetActive(false);
+            if (Input.GetKey(_keyup))
+            {
+                HandleLadders(other, Ladder.Up);
+            }
+            else if (Input.GetKey(_keydown))
+            {
+                HandleLadders(other, Ladder.Down);
+            }
         }
-        if (Input.GetKey(_keyAction))
+        else
         {
-            if (IsDebug) { Debug.Log($"breaking starts"); }
+            if (!Input.GetKey(_keyAction) && Input.anyKey)
+            {
+                if (IsDebug)
+                {
+                    Debug.Log($"breaking stops !!!");
+                }
 
-            Icon.SetActive(true);
-            StartCoroutine(BreakStuff(other));
+                StopCoroutine(BreakStuff(other));
+                _breakSuccess = false;
+                Icon.SetActive(false);
+            }
+
+            if (Input.GetKey(_keyAction))
+            {
+                if (IsDebug)
+                {
+                    Debug.Log($"breaking starts");
+                }
+
+                Icon.SetActive(true);
+                StartCoroutine(BreakStuff(other));
+            }
         }
     }
 
@@ -158,5 +182,21 @@ public class CatScript : MonoBehaviour
         //break
         _breakSuccess = false;
         Icon.SetActive(false);
+    }
+    
+    private void HandleLadders(Collider2D other, Ladder ladder)
+    {
+        var num = other.name[1];
+        var dir = other.name[2];
+        if ((ladder == Ladder.Down && dir == 'D') || (ladder == Ladder.Up && dir == 'U'))
+        {
+            return;
+        }
+        var newdir = dir == 'U' ? 'D' : 'U';
+        var newlad = "L" + num + newdir;
+        var newpos = GameObject.Find(newlad);
+        if (IsDebug && newpos == null){ Debug.Log("teleporting problem..."); }
+
+        transform.position = newpos.gameObject.transform.position;
     }
 }

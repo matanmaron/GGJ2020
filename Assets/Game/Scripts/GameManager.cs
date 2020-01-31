@@ -9,11 +9,14 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; } //singletone
     
     [SerializeField] bool IsDebug = false;
-    
     internal KeyCode CatRight = KeyCode.D;
     internal KeyCode CatLeft = KeyCode.A;
+    internal KeyCode CatUp = KeyCode.W;
+    internal KeyCode CatDown = KeyCode.S;
     internal KeyCode HumanRight = KeyCode.RightArrow;
     internal KeyCode HumanLeft = KeyCode.LeftArrow;
+    internal KeyCode HumanUp = KeyCode.UpArrow;
+    internal KeyCode HumanDown = KeyCode.DownArrow;
     internal KeyCode CatJump = KeyCode.Space;
     internal KeyCode HumanJump = KeyCode.Return;
     internal KeyCode CatAction = KeyCode.E;

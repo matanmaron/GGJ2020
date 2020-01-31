@@ -4,3 +4,8 @@
     Right
 }
 
+public enum Ladder
+{
+    Up,
+    Down
+}

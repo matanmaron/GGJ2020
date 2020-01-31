@@ -14,6 +14,8 @@ public class HumanScript : MonoBehaviour
     private Animator _animator;
     private KeyCode _keyleft;
     private KeyCode _keyrigth;
+    private KeyCode _keyup;
+    private KeyCode _keydown;
     private KeyCode _keyjump;
     private KeyCode _keyAction;
     private bool stoped = true;
@@ -35,6 +37,8 @@ public class HumanScript : MonoBehaviour
         if (IsDebug && _animator == null) { Debug.Log("cannot find human Animator"); }
         _keyleft = _gameManager.HumanLeft;
         _keyrigth = _gameManager.HumanRight;
+        _keyup = _gameManager.HumanUp;
+        _keydown = _gameManager.HumanDown;
         _keyjump = _gameManager.HumanJump;
         _keyAction = _gameManager.HumanAction;
         _animator.Play("Idle");
@@ -138,23 +142,56 @@ public class HumanScript : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D other)
     {
-        if (IsDebug) { Debug.Log($"human colliding with {other.gameObject.name}"); }
-
-        if (!Input.GetKey(_keyAction) && Input.anyKey)
+        //if (IsDebug) { Debug.Log($"human colliding with {other.gameObject.name}"); }
+        if (other.gameObject.tag == "ladder")
         {
-            if (IsDebug) { Debug.Log($"fixing stops !!!"); }
-
-            StopCoroutine(FixStuff(other));
-            _fixSuccess = false;
-            Icon.SetActive(false);
+            if (Input.GetKey(_keyup))
+            {
+                HandleLadders(other, Ladder.Up);
+            }
+            else if (Input.GetKey(_keydown))
+            {
+                HandleLadders(other, Ladder.Down);
+            }
         }
-        if (Input.GetKey(_keyAction))
+        else
         {
-            if (IsDebug) { Debug.Log($"fixing starts"); }
+            if (!Input.GetKey(_keyAction) && Input.anyKey)
+            {
+                if (IsDebug)
+                {
+                    Debug.Log($"fixing stops !!!");
+                }
 
-            Icon.SetActive(true);
-            StartCoroutine(FixStuff(other));
+                StopCoroutine(FixStuff(other));
+                _fixSuccess = false;
+                Icon.SetActive(false);
+            }
+
+            if (Input.GetKey(_keyAction))
+            {
+                if (IsDebug){ Debug.Log($"fixing starts"); }
+
+                Icon.SetActive(true);
+                StartCoroutine(FixStuff(other));
+            }
         }
+    }
+
+    private void HandleLadders(Collider2D other, Ladder ladder)
+    {
+        var num = other.name[1];
+        var dir = other.name[2];
+        if ((ladder == Ladder.Down && dir == 'D') || (ladder == Ladder.Up && dir == 'U'))
+        {
+            return;
+        }
+        var newdir = dir == 'U' ? 'D' : 'U';
+        var newlad = "L" + num + newdir;
+        var newpos = GameObject.Find(newlad);
+        if (IsDebug && newpos == null){ Debug.Log("teleporting problem..."); }
+
+        transform.position = newpos.gameObject.transform.position;
     }
 
     IEnumerator FixStuff(Collider2D other)
