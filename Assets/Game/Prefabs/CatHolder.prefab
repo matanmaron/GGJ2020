@@ -10403,7 +10403,7 @@ Transform:
   m_GameObject: {fileID: 1725507625689552010}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.802, y: 0.2947, z: 0}
-  m_LocalScale: {x: 0.9360487, y: 0.6147694, z: 0.6903794}
+  m_LocalScale: {x: 0.56422675, y: 0.37056765, z: 0.41614345}
   m_Children:
   - {fileID: 1725507625597938845}
   - {fileID: 5413378520961370669}
@@ -10516,8 +10516,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDebug: 1
-  Speed: 3
-  JumpSpeed: 300
+  Speed: 2
+  JumpSpeed: 250
   Icon: {fileID: 7461862551020957564}
 --- !u!1 &7461862551020957564
 GameObject:

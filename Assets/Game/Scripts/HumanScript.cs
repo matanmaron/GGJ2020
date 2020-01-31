@@ -61,14 +61,14 @@ public class HumanScript : MonoBehaviour
         {
             if (_face == Face.Left)
             {
-                if (IsDebug) { Debug.Log("human turn left"); }
+                //if (IsDebug) { Debug.Log("human turn left"); }
 
                 //0 to 180
                 transform.rotation = Quaternion.Euler(0, 180, 0);
             }
             else if (_face == Face.Right)
             {
-                if (IsDebug) { Debug.Log("human turn right"); }
+                //if (IsDebug) { Debug.Log("human turn right"); }
                 //180 t0 0
                 transform.rotation = Quaternion.Euler(0, 0, 0);
             }
@@ -81,7 +81,7 @@ public class HumanScript : MonoBehaviour
         var move = false;
         if (Input.GetKey(_keyleft))
         {
-            if (IsDebug) { Debug.Log("human left"); }
+            //if (IsDebug) { Debug.Log("human left"); }
             _rigidbody2D.velocity = new Vector2(Speed * -1, _rigidbody2D.velocity.y);
             stoped = false;
             move = true;
@@ -91,7 +91,7 @@ public class HumanScript : MonoBehaviour
         }
         if (Input.GetKey(_keyrigth))
         {
-            if (IsDebug) { Debug.Log("human right"); }
+            //if (IsDebug) { Debug.Log("human right"); }
             _rigidbody2D.velocity = new Vector2(Speed, _rigidbody2D.velocity.y);
             stoped = false;
             move = true;
@@ -102,7 +102,7 @@ public class HumanScript : MonoBehaviour
 
         if (!move && !stoped)
         {
-            if (IsDebug) { Debug.Log("human stop"); }
+            //if (IsDebug) { Debug.Log("human stop"); }
             _rigidbody2D.velocity = Vector2.zero;
             stoped = true;
             _animator.Play("Idle");
