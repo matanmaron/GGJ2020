@@ -36,6 +36,7 @@ public class HumanScript : MonoBehaviour
         _keyleft = _gameManager.HumanLeft;
         _keyrigth = _gameManager.HumanRight;
         _keyjump = _gameManager.HumanJump;
+        _keyAction = _gameManager.HumanAction;
         _animator.Play("Idle");
     }
     

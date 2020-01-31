@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2072282027406591102
 Transform:
   m_ObjectHideFlags: 0
@@ -178,7 +178,7 @@ MonoBehaviour:
   Speed: 2
   PausePanel: {fileID: 0}
   JumpSpeed: 200
-  Icon: {fileID: 0}
+  Icon: {fileID: 185002653187433350}
 --- !u!1 &6007511645281958799
 GameObject:
   m_ObjectHideFlags: 0
