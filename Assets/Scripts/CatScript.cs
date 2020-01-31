@@ -11,6 +11,7 @@ public class CatScript : MonoBehaviour
     
     private Rigidbody2D _rigidbody2D;
     private GameManager _gameManager;
+    private Animator _animator;
     private KeyCode _keyleft;
     private KeyCode _keyrigth;
     private bool _stoped = true;
@@ -26,8 +27,11 @@ public class CatScript : MonoBehaviour
         if (IsDebug && gm == null) { Debug.Log("cannot find cat GameManager"); }
         _gameManager = gm.GetComponent<GameManager>();
         if (IsDebug && gm == null) { Debug.Log("cannot find cat GameManager script"); }
+        _animator = transform.gameObject.GetComponentInChildren<Animator>();
+        if (IsDebug && _animator == null) { Debug.Log("cannot find cat Animator"); }
         _keyleft = _gameManager.CatLeft;
         _keyrigth = _gameManager.CatRight;
+        _animator.Play("Idle");
     }
     
     void LateUpdate()
@@ -68,6 +72,7 @@ public class CatScript : MonoBehaviour
             move = true;
             _face = Face.Left;
             _changeFace = true;
+            _animator.Play("Walk");
         }
         if (Input.GetKey(_keyrigth))
         {
@@ -77,6 +82,7 @@ public class CatScript : MonoBehaviour
             move = true;
             _face = Face.Right;
             _changeFace = true;
+            _animator.Play("Walk");
         }
 
         if (!move && !_stoped)
@@ -84,6 +90,7 @@ public class CatScript : MonoBehaviour
             if (IsDebug) { Debug.Log("cat stop"); }
             _rigidbody2D.velocity = Vector2.zero;
             _stoped = true;
+            _animator.Play("Idle");
         }
     }
 }
