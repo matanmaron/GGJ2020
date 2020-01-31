@@ -6,6 +6,7 @@ public class HumanScript : MonoBehaviour
 {
     [SerializeField] bool IsDebug = false;
     [SerializeField] float Speed = 1;
+    [SerializeField] private GameObject PausePanel;
     
     private Rigidbody2D _rigidbody2D;
     private GameManager _gameManager;
@@ -34,8 +35,16 @@ public class HumanScript : MonoBehaviour
     
     void LateUpdate()
     {
-        Move();
-        ChangeFace();
+        if (!_gameManager.GamePaused  && Input.GetKey(KeyCode.Escape))
+        {//only in human ! no need to copy on cat!
+            _gameManager.GamePaused = !_gameManager.GamePaused;
+            PausePanel.SetActive(_gameManager.GamePaused);
+        }
+        if (!_gameManager.GamePaused)
+        {
+            Move();
+            ChangeFace();
+        }
     }
 
     private void ChangeFace()
@@ -91,4 +100,12 @@ public class HumanScript : MonoBehaviour
             _animator.Play("Idle");
         }
     }
+    
+    public void OnButtonResume()
+    {
+        _gameManager.GamePaused = !_gameManager.GamePaused;
+        PausePanel.SetActive(_gameManager.GamePaused);
+        if (IsDebug) { Debug.Log("pause is " + _gameManager.GamePaused); }
+    }
+    
 }
