@@ -8,17 +8,20 @@ public class HumanScript : MonoBehaviour
     [SerializeField] float Speed = 1;
     [SerializeField] private GameObject PausePanel;
     [SerializeField] float JumpSpeed = 10;
+    [SerializeField] GameObject Icon;
     private Rigidbody2D _rigidbody2D;
     private GameManager _gameManager;
     private Animator _animator;
     private KeyCode _keyleft;
     private KeyCode _keyrigth;
     private KeyCode _keyjump;
+    private KeyCode _keyAction;
     private bool stoped = true;
     private Face _face = Face.Left;
     private bool _changeFace = false;
     private bool _isGround = false;
-    
+    private bool _fixSuccess = false;
+
     void Start()
     {
         if (IsDebug) { Debug.Log("*** HumanScript debug is on ***"); }
@@ -116,7 +119,7 @@ public class HumanScript : MonoBehaviour
     {
         if (_isGround && Input.GetKey(_keyjump))
         {
-            if (IsDebug) { Debug.Log("cat jump"); }
+            if (IsDebug) { Debug.Log("human jump"); }
             _rigidbody2D.AddForce(Vector2.up * JumpSpeed, ForceMode2D.Force );
             _isGround = false;
             _animator.Play("Jump");
@@ -128,7 +131,38 @@ public class HumanScript : MonoBehaviour
         if(collision.gameObject.tag == "ground")
         {
             _isGround = true;
-            if (IsDebug) { Debug.Log("cat ground is: "+_isGround); }
+            if (IsDebug) { Debug.Log("human ground is: "+_isGround); }
         }
+    }
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (IsDebug) { Debug.Log($"human colliding with {other.gameObject.name}"); }
+
+        if (!Input.GetKey(_keyAction) && Input.anyKey)
+        {
+            if (IsDebug) { Debug.Log($"fixing stops !!!"); }
+
+            StopCoroutine(FixStuff(other));
+            _fixSuccess = false;
+            Icon.SetActive(false);
+        }
+        if (Input.GetKey(_keyAction))
+        {
+            if (IsDebug) { Debug.Log($"fixing starts"); }
+
+            Icon.SetActive(true);
+            StartCoroutine(FixStuff(other));
+        }
+    }
+
+    IEnumerator FixStuff(Collider2D other)
+    {
+        yield return new WaitForSeconds(2);
+        _fixSuccess = true;
+        if (IsDebug) { Debug.Log($"human fixed {other.gameObject.name} successfully"); }
+        //fix
+        _fixSuccess = false;
+        Icon.SetActive(false);
     }
 }
