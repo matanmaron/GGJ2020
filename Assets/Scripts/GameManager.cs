@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     
     internal KeyCode CatRight = KeyCode.D;
     internal KeyCode CatLeft = KeyCode.A;
+    internal KeyCode HumanRight = KeyCode.RightArrow;
+    internal KeyCode HumanLeft = KeyCode.LeftArrow;
     
     private void Awake()
     {

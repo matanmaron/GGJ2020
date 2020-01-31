@@ -10,8 +10,8 @@ public class CatScript : MonoBehaviour
     
     private Rigidbody2D _rigidbody2D;
     private GameManager _gameManager;
-    private KeyCode _keyleft = KeyCode.A;
-    private KeyCode _keyrigth = KeyCode.D;
+    private KeyCode _keyleft;
+    private KeyCode _keyrigth;
     private bool stoped = true;
     void Start()
     {
@@ -36,19 +36,22 @@ public class CatScript : MonoBehaviour
         var move = false;
         if (Input.GetKey(_keyleft))
         {
+            if (IsDebug) { Debug.Log("cat left"); }
             _rigidbody2D.velocity = new Vector2(Speed * -1, _rigidbody2D.velocity.y);
-            move = true;
             stoped = false;
+            move = true;
         }
         if (Input.GetKey(_keyrigth))
         {
+            if (IsDebug) { Debug.Log("cat right"); }
             _rigidbody2D.velocity = new Vector2(Speed, _rigidbody2D.velocity.y);
-            move = true;
             stoped = false;
+            move = true;
         }
 
         if (!move && !stoped)
         {
+            if (IsDebug) { Debug.Log("cat stop"); }
             _rigidbody2D.velocity = Vector2.zero;
             stoped = true;
         }
