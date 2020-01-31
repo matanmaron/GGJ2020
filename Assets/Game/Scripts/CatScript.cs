@@ -10,6 +10,7 @@ public class CatScript : MonoBehaviour
     [SerializeField] bool IsDebug = false;
     [SerializeField] float Speed = 1;
     [SerializeField] float JumpSpeed = 10;
+    [SerializeField] GameObject Icon;
     private Rigidbody2D _rigidbody2D;
     private GameManager _gameManager;
     private Animator _animator;
@@ -127,31 +128,35 @@ public class CatScript : MonoBehaviour
             if (IsDebug) { Debug.Log("cat ground is: "+_isGround); }
         }
     }
-
-    void OnCollisionStay2D(Collider2D other)
+    
+    void OnTriggerStay2D(Collider2D other)
     {
         if (IsDebug) { Debug.Log($"cat colliding with {other.gameObject.name}"); }
 
-        if (Input.anyKey)
+        if (!Input.GetKey(_keyAction) && Input.anyKey)
         {
-            StopCoroutine(BreakStuff());
+            if (IsDebug) { Debug.Log($"breaking stops !!!"); }
+
+            StopCoroutine(BreakStuff(other));
             _breakSuccess = false;
+            Icon.SetActive(false);
         }
         if (Input.GetKey(_keyAction))
         {
-            StartCoroutine(BreakStuff());
-            if (_breakSuccess)
-            {
-                if (IsDebug) { Debug.Log($"cat break {other.gameObject.name} successfully"); }
-                //break
-                _breakSuccess = false;
-            }
+            if (IsDebug) { Debug.Log($"breaking starts"); }
+
+            Icon.SetActive(true);
+            StartCoroutine(BreakStuff(other));
         }
     }
 
-    IEnumerator BreakStuff()
+    IEnumerator BreakStuff(Collider2D other)
     {
         yield return new WaitForSeconds(1);
         _breakSuccess = true;
+        if (IsDebug) { Debug.Log($"cat break {other.gameObject.name} successfully"); }
+        //break
+        _breakSuccess = false;
+        Icon.SetActive(false);
     }
 }
