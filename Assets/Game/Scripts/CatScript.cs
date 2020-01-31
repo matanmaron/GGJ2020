@@ -125,4 +125,10 @@ public class CatScript : MonoBehaviour
             if (IsDebug) { Debug.Log("cat ground is: "+_isGround); }
         }
     }
+
+    void OnTriggerStay(Collider other)
+    {
+        if (other.attachedRigidbody)
+            other.attachedRigidbody.AddForce(Vector3.up * 10);
+    }
 }
