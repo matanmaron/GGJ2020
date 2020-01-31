@@ -15,6 +15,7 @@ public class CatScript : MonoBehaviour
     private KeyCode _keyleft;
     private KeyCode _keyrigth;
     private KeyCode _keyjump;
+    private KeyCode _keyAction;
     private bool _stoped = true;
     private Face _face = Face.Left;
     private bool _changeFace = false;
@@ -36,6 +37,7 @@ public class CatScript : MonoBehaviour
         _keyleft = _gameManager.CatLeft;
         _keyrigth = _gameManager.CatRight;
         _keyjump = _gameManager.CatJump;
+        _keyAction = _gameManager.CatAction;
         _animator.Play("Idle");
     }
     
@@ -128,7 +130,9 @@ public class CatScript : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        if (other.attachedRigidbody)
-            other.attachedRigidbody.AddForce(Vector3.up * 10);
+        if (Input.GetKey(_keyAction))
+        {
+            
+        }
     }
 }
