@@ -204,6 +204,14 @@
             </e>
           </e>
         </e>
+        <e p="RPG Food &amp; Drinks Pack" t="Include">
+          <e p="Assets" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="Consumer.cs" t="Include" />
+              <e p="Rotator.cs" t="Include" />
+            </e>
+          </e>
+        </e>
       </e>
       <e p="GGJ2020.sln" t="IncludeFlat" />
       <e p="obj" t="ExcludeRecursive" />

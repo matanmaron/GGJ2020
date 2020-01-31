@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.Profiling.Memory.Experimental;
@@ -20,7 +21,7 @@ public class CatScript : MonoBehaviour
     private Face _face = Face.Left;
     private bool _changeFace = false;
     private bool _isGround = false;
-    
+    private bool _breakSuccess = false;
 
     void Start()
     {
@@ -57,14 +58,13 @@ public class CatScript : MonoBehaviour
         {
             if (_face == Face.Left)
             {
-                if (IsDebug) { Debug.Log("cat turn left"); }
-
+                //if (IsDebug) { Debug.Log("cat turn left"); }
                 //0 to 180
                 transform.rotation = Quaternion.Euler(0, 180, 0);
             }
             else if (_face == Face.Right)
             {
-                if (IsDebug) { Debug.Log("cat turn right"); }
+                //if (IsDebug) { Debug.Log("cat turn right"); }
                 //180 t0 0
                 transform.rotation = Quaternion.Euler(0, 0, 0);
             }
@@ -78,7 +78,7 @@ public class CatScript : MonoBehaviour
         var move = false;
         if (Input.GetKey(_keyleft))
         {
-            if (IsDebug) { Debug.Log("cat left"); }
+            //if (IsDebug) { Debug.Log("cat left"); }
             _rigidbody2D.velocity = new Vector2(Speed * -1, _rigidbody2D.velocity.y);
             _stoped = false;
             move = true;
@@ -88,7 +88,7 @@ public class CatScript : MonoBehaviour
         }
         if (Input.GetKey(_keyrigth))
         {
-            if (IsDebug) { Debug.Log("cat right"); }
+            //if (IsDebug) { Debug.Log("cat right"); }
             _rigidbody2D.velocity = new Vector2(Speed, _rigidbody2D.velocity.y);
             _stoped = false;
             move = true;
@@ -101,7 +101,7 @@ public class CatScript : MonoBehaviour
 
         if (!move && !_stoped)
         {
-            if (IsDebug) { Debug.Log("cat stop"); }
+            //if (IsDebug) { Debug.Log("cat stop"); }
             _rigidbody2D.velocity = Vector2.zero;
             _stoped = true;
             _animator.Play("Idle");
@@ -128,11 +128,30 @@ public class CatScript : MonoBehaviour
         }
     }
 
-    void OnTriggerStay(Collider other)
+    void OnCollisionStay2D(Collider2D other)
     {
+        if (IsDebug) { Debug.Log($"cat colliding with {other.gameObject.name}"); }
+
+        if (Input.anyKey)
+        {
+            StopCoroutine(BreakStuff());
+            _breakSuccess = false;
+        }
         if (Input.GetKey(_keyAction))
         {
-            
+            StartCoroutine(BreakStuff());
+            if (_breakSuccess)
+            {
+                if (IsDebug) { Debug.Log($"cat break {other.gameObject.name} successfully"); }
+                //break
+                _breakSuccess = false;
+            }
         }
+    }
+
+    IEnumerator BreakStuff()
+    {
+        yield return new WaitForSeconds(1);
+        _breakSuccess = true;
     }
 }
