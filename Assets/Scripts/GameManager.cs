@@ -6,8 +6,12 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; } //singletone
+    
     [SerializeField] bool IsDebug = false;
-
+    
+    internal KeyCode CatRight = KeyCode.D;
+    internal KeyCode CatLeft = KeyCode.A;
+    
     private void Awake()
     {
         if (Instance == null)

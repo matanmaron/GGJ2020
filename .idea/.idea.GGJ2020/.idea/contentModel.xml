@@ -6,10 +6,21 @@
     <e p="$PROJECT_DIR$" t="IncludeRecursive">
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="2D Destructible Objects" t="Include">
+          <e p="Assets" t="Include">
+            <e p="C#Scripts" t="Include">
+              <e p="Clown.cs" t="Include" />
+              <e p="HitInformer.cs" t="Include" />
+              <e p="IHittable.cs" t="Include" />
+              <e p="Piece.cs" t="Include" />
+              <e p="Shatterable.cs" t="Include" />
+              <e p="Spawner.cs" t="Include" />
+            </e>
+          </e>
+        </e>
         <e p="Scripts" t="Include">
-          <e p="CameraScript.cs" t="Include" />
+          <e p="CatScript.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
-          <e p="PlayerControlScript.cs" t="Include" />
         </e>
       </e>
       <e p="GGJ2020.sln" t="IncludeFlat" />
