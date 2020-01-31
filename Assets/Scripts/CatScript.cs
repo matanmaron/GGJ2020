@@ -8,20 +8,24 @@ public class CatScript : MonoBehaviour
 {
     [SerializeField] bool IsDebug = false;
     [SerializeField] float Speed = 1;
-    
+    [SerializeField] float JumpSpeed = 10;
     private Rigidbody2D _rigidbody2D;
     private GameManager _gameManager;
     private Animator _animator;
     private KeyCode _keyleft;
     private KeyCode _keyrigth;
+    private KeyCode _keyjump;
     private bool _stoped = true;
     private Face _face = Face.Left;
     private bool _changeFace = false;
+    private bool _isGround = false;
+    
 
     void Start()
     {
         if (IsDebug) { Debug.Log("*** CatScript debug is on ***"); }
         _rigidbody2D = GetComponent<Rigidbody2D>();
+        
         if (IsDebug && _rigidbody2D == null) { Debug.Log("cannot find cat Rigidbody2D"); }
         var gm = GameObject.Find("GameManager");
         if (IsDebug && gm == null) { Debug.Log("cannot find cat GameManager"); }
@@ -31,6 +35,7 @@ public class CatScript : MonoBehaviour
         if (IsDebug && _animator == null) { Debug.Log("cannot find cat Animator"); }
         _keyleft = _gameManager.CatLeft;
         _keyrigth = _gameManager.CatRight;
+        _keyjump = KeyCode.Space;
         _animator.Play("Idle");
     }
     
@@ -38,6 +43,7 @@ public class CatScript : MonoBehaviour
     {
         ChangeMove();
         ChangeFace();
+        DoJump();
     }
 
     private void ChangeFace()
@@ -60,6 +66,7 @@ public class CatScript : MonoBehaviour
             _changeFace = false;
         }
     }
+
 
     private void ChangeMove()
     {
@@ -84,6 +91,8 @@ public class CatScript : MonoBehaviour
             _changeFace = true;
             _animator.Play("Walk");
         }
+        
+
 
         if (!move && !_stoped)
         {
@@ -91,6 +100,26 @@ public class CatScript : MonoBehaviour
             _rigidbody2D.velocity = Vector2.zero;
             _stoped = true;
             _animator.Play("Idle");
+        }
+    }
+
+    void DoJump()
+    {
+        if (_isGround && Input.GetKey(_keyjump))
+        {
+            if (IsDebug) { Debug.Log("cat jump"); }
+            _rigidbody2D.AddForce(Vector2.up * JumpSpeed, ForceMode2D.Force );
+            _isGround = false;
+            _animator.Play("Jump");
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "ground")
+        {
+            _isGround = true;
+            if (IsDebug) { Debug.Log("cat ground is: "+_isGround); }
         }
     }
 }

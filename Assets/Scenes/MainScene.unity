@@ -671,7 +671,7 @@ GameObject:
   - component: {fileID: 1231212855}
   m_Layer: 0
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -776,7 +776,7 @@ GameObject:
   - component: {fileID: 1353834123}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1087,7 +1087,7 @@ GameObject:
   - component: {fileID: 1549101058}
   m_Layer: 0
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1192,7 +1192,7 @@ GameObject:
   - component: {fileID: 1570686305}
   m_Layer: 0
   m_Name: Cube (3)
-  m_TagString: Untagged
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1677,6 +1677,10 @@ PrefabInstance:
     - target: {fileID: 1873666466, guid: 7c535c55443104326b1a4084b23333e5, type: 3}
       propertyPath: IsDebug
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1873666466, guid: 7c535c55443104326b1a4084b23333e5, type: 3}
+      propertyPath: JumpSpeed
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 1725507625689552010, guid: 7c535c55443104326b1a4084b23333e5,
         type: 3}
