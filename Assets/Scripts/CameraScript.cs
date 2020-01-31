@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
-    [SerializeField] private bool IsDebug = false;
-    [SerializeField] private float SensitivityX = 1;
-    [SerializeField] private float SensitivityY = 1;
-    [SerializeField] private float MinimumY = -20;
-    [SerializeField] private float MaximumY = 40;
+    [SerializeField] bool IsDebug = false;
+    [SerializeField] float SensitivityX = 1;
+    [SerializeField] float SensitivityY = 1;
+    [SerializeField] float MinimumY = -20;
+    [SerializeField] float MaximumY = 40;
     private PlayerControlScript _target;
     private float _rotationY;
     private float _rotationX;
 
     void Start()
     {
+        if (IsDebug) { Debug.Log("*** CameraScript debug is on ***"); }
         var player = GameObject.Find("Player");
         if (IsDebug && player == null)
         {

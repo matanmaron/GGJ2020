@@ -1,11 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; } //singletone
-    [SerializeField] private static bool IsDebug = false;
+    [SerializeField] bool IsDebug = false;
 
     private void Awake()
     {
@@ -18,5 +19,9 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void Start() {
+        if (IsDebug) { Debug.Log("*** GameManager debug is on ***"); }
     }
 }
