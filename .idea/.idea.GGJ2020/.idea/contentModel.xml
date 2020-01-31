@@ -20,6 +20,7 @@
         </e>
         <e p="Scripts" t="Include">
           <e p="CatScript.cs" t="Include" />
+          <e p="Enums.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
           <e p="HumanScript.cs" t="Include" />
         </e>

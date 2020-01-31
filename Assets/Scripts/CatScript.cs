@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEditor.Profiling.Memory.Experimental;
 using UnityEngine;
 
@@ -12,7 +13,10 @@ public class CatScript : MonoBehaviour
     private GameManager _gameManager;
     private KeyCode _keyleft;
     private KeyCode _keyrigth;
-    private bool stoped = true;
+    private bool _stoped = true;
+    private Face _face = Face.Left;
+    private bool _changeFace = false;
+
     void Start()
     {
         if (IsDebug) { Debug.Log("*** CatScript debug is on ***"); }
@@ -28,32 +32,75 @@ public class CatScript : MonoBehaviour
     
     void LateUpdate()
     {
-        Move();
+        ChangeMove();
+        ChangeFace();
     }
 
-    private void Move()
+    private void ChangeFace()
+    {
+        if (_changeFace)
+        {
+            StartCoroutine(Turn());
+            _changeFace = false;
+        }
+    }
+
+    IEnumerator Turn()
+    {
+        Quaternion q = transform.rotation;
+        if (_face == Face.Left)
+        {
+            if (IsDebug) { Debug.Log("cat turn left"); }
+
+            //0 to 180
+            for (int i = 1; i < 181; i++)
+            {
+                q.y += 1f;
+                transform.rotation = q;
+            }
+        }
+        else if (_face == Face.Right)
+        {
+            if (IsDebug) { Debug.Log("cat turn right"); }
+            //180 t0 0
+            for (int i = 1; i < 181; i++)
+            {
+                q.y -= 1f;
+                transform.rotation = q;
+            }
+        }
+        
+        yield return new WaitForSeconds(0.001f);
+        _changeFace = false;
+    }
+    
+    private void ChangeMove()
     {
         var move = false;
         if (Input.GetKey(_keyleft))
         {
             if (IsDebug) { Debug.Log("cat left"); }
             _rigidbody2D.velocity = new Vector2(Speed * -1, _rigidbody2D.velocity.y);
-            stoped = false;
+            _stoped = false;
             move = true;
+            _face = Face.Left;
+            _changeFace = true;
         }
         if (Input.GetKey(_keyrigth))
         {
             if (IsDebug) { Debug.Log("cat right"); }
             _rigidbody2D.velocity = new Vector2(Speed, _rigidbody2D.velocity.y);
-            stoped = false;
+            _stoped = false;
             move = true;
+            _face = Face.Right;
+            _changeFace = true;
         }
 
-        if (!move && !stoped)
+        if (!move && !_stoped)
         {
             if (IsDebug) { Debug.Log("cat stop"); }
             _rigidbody2D.velocity = Vector2.zero;
-            stoped = true;
+            _stoped = true;
         }
     }
 }
