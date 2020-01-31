@@ -52,15 +52,9 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 6ffd0893bd39fad41bf26cad38f60bba, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
-  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
-    are already bound by a Humanoid avatar. These transforms can only be changed by
-    Humanoid clips.\n\tTransform 'Character1_RightFoot'\n\tTransform 'Character1_LeftFoot'\n\tTransform
-    'Character1_LeftHandRing3'\n\tTransform 'Character1_RightHand'\n\tTransform 'Character1_RightHandRing1'\n\tTransform
-    'Character1_LeftHand'\n\tTransform 'Character1_Head'\n\tTransform 'Character1_LeftHandMiddle3'\n\tTransform
-    'Character1_LeftHandRing1'\n\tTransform 'Character1_LeftArm'\n\tand more ...\n\tFrom
-    animation clip 'Take 001'"
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0

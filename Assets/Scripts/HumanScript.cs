@@ -9,6 +9,7 @@ public class HumanScript : MonoBehaviour
     
     private Rigidbody2D _rigidbody2D;
     private GameManager _gameManager;
+    private Animator _animator;
     private KeyCode _keyleft;
     private KeyCode _keyrigth;
     private bool stoped = true;
@@ -24,8 +25,11 @@ public class HumanScript : MonoBehaviour
         if (IsDebug && gm == null) { Debug.Log("cannot find human GameManager"); }
         _gameManager = gm.GetComponent<GameManager>();
         if (IsDebug && gm == null) { Debug.Log("cannot find human GameManager script"); }
+        _animator = transform.gameObject.GetComponentInChildren<Animator>();
+        if (IsDebug && _animator == null) { Debug.Log("cannot find human Animator"); }
         _keyleft = _gameManager.HumanLeft;
         _keyrigth = _gameManager.HumanRight;
+        _animator.Play("Idle");
     }
     
     void LateUpdate()
@@ -66,6 +70,7 @@ public class HumanScript : MonoBehaviour
             move = true;
             _face = Face.Left;
             _changeFace = true;
+            _animator.Play("Walk");
         }
         if (Input.GetKey(_keyrigth))
         {
@@ -75,6 +80,7 @@ public class HumanScript : MonoBehaviour
             move = true;
             _face = Face.Right;
             _changeFace = true;
+            _animator.Play("Walk");
         }
 
         if (!move && !stoped)
@@ -82,6 +88,7 @@ public class HumanScript : MonoBehaviour
             if (IsDebug) { Debug.Log("human stop"); }
             _rigidbody2D.velocity = Vector2.zero;
             stoped = true;
+            _animator.Play("Idle");
         }
     }
 }
