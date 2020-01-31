@@ -76,7 +76,7 @@ SpriteRenderer:
   m_Color: {r: 0.7254902, g: 0.50980395, b: 0.29411766, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
+  m_DrawMode: 2
   m_Size: {x: 0.578125, y: 0.15625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
@@ -124,7 +124,7 @@ BoxCollider2D:
     oldSize: {x: 0.578125, y: 0.15625}
     newSize: {x: 0.578125, y: 0.15625}
     adaptiveTilingThreshold: 0.5
-    drawMode: 0
+    drawMode: 2
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
