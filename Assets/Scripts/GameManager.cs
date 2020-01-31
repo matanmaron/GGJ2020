@@ -14,7 +14,10 @@ public class GameManager : MonoBehaviour
     internal KeyCode CatLeft = KeyCode.A;
     internal KeyCode HumanRight = KeyCode.RightArrow;
     internal KeyCode HumanLeft = KeyCode.LeftArrow;
+    internal KeyCode CatJump = KeyCode.Space;
+    internal KeyCode HumanJump = KeyCode.Return;
     internal bool GamePaused = false;
+    
     private void Awake()
     {
         if (Instance == null)

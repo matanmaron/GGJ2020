@@ -7,15 +7,17 @@ public class HumanScript : MonoBehaviour
     [SerializeField] bool IsDebug = false;
     [SerializeField] float Speed = 1;
     [SerializeField] private GameObject PausePanel;
-    
+    [SerializeField] float JumpSpeed = 10;
     private Rigidbody2D _rigidbody2D;
     private GameManager _gameManager;
     private Animator _animator;
     private KeyCode _keyleft;
     private KeyCode _keyrigth;
+    private KeyCode _keyjump;
     private bool stoped = true;
     private Face _face = Face.Left;
     private bool _changeFace = false;
+    private bool _isGround = false;
     
     void Start()
     {
@@ -30,6 +32,7 @@ public class HumanScript : MonoBehaviour
         if (IsDebug && _animator == null) { Debug.Log("cannot find human Animator"); }
         _keyleft = _gameManager.HumanLeft;
         _keyrigth = _gameManager.HumanRight;
+        _keyjump = _gameManager.HumanJump;
         _animator.Play("Idle");
     }
     
@@ -44,6 +47,7 @@ public class HumanScript : MonoBehaviour
         {
             Move();
             ChangeFace();
+            DoJump();
         }
     }
 
@@ -108,4 +112,23 @@ public class HumanScript : MonoBehaviour
         if (IsDebug) { Debug.Log("pause is " + _gameManager.GamePaused); }
     }
     
+    private void DoJump()
+    {
+        if (_isGround && Input.GetKey(_keyjump))
+        {
+            if (IsDebug) { Debug.Log("cat jump"); }
+            _rigidbody2D.AddForce(Vector2.up * JumpSpeed, ForceMode2D.Force );
+            _isGround = false;
+            _animator.Play("Jump");
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "ground")
+        {
+            _isGround = true;
+            if (IsDebug) { Debug.Log("cat ground is: "+_isGround); }
+        }
+    }
 }

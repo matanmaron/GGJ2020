@@ -35,15 +35,18 @@ public class CatScript : MonoBehaviour
         if (IsDebug && _animator == null) { Debug.Log("cannot find cat Animator"); }
         _keyleft = _gameManager.CatLeft;
         _keyrigth = _gameManager.CatRight;
-        _keyjump = KeyCode.Space;
+        _keyjump = _gameManager.CatJump;
         _animator.Play("Idle");
     }
     
     void LateUpdate()
     {
-        ChangeMove();
-        ChangeFace();
-        DoJump();
+        if (!_gameManager.GamePaused)
+        {
+            ChangeMove();
+            ChangeFace();
+            DoJump();
+        }
     }
 
     private void ChangeFace()
@@ -103,7 +106,7 @@ public class CatScript : MonoBehaviour
         }
     }
 
-    void DoJump()
+    private void DoJump()
     {
         if (_isGround && Input.GetKey(_keyjump))
         {
