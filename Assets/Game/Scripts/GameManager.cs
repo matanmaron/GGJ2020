@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
     public void OnButtonEndGame()
     {
         if (IsDebug) { Debug.Log("game ended. loading menu"); }
-        SceneManager.LoadScene("MenuScene");
+        SceneManager.LoadScene(0);
     }
     
 }

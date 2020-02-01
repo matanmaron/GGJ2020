@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
-using UnityEditor.Profiling.Memory.Experimental;
 using UnityEngine;
 
 public class CatScript : MonoBehaviour
