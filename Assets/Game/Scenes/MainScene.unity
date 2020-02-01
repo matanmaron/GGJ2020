@@ -341,6 +341,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vase_0011
       objectReference: {fileID: 0}
+    - target: {fileID: 1298110795410774, guid: 0fa2818732bc0414282019efb2c0cb2c, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4394209639061292, guid: 0fa2818732bc0414282019efb2c0cb2c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.4372051
@@ -398,10 +402,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vase_0010
       objectReference: {fileID: 0}
-    - target: {fileID: 1263919029505422, guid: 2e3c5018416c965478c0df010d111383, type: 3}
-      propertyPath: m_TagString
-      value: item
-      objectReference: {fileID: 0}
     - target: {fileID: 4248302022653446, guid: 2e3c5018416c965478c0df010d111383, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.82
@@ -444,11 +444,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4248302022653446, guid: 2e3c5018416c965478c0df010d111383, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 50424514060555366, guid: 2e3c5018416c965478c0df010d111383,
-        type: 3}
-      propertyPath: m_GravityScale
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2280,13 +2275,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 1340090058498080, guid: b9f61412fbd551745bf2ced48e859fed, type: 3}
-      propertyPath: m_TagString
-      value: item
-      objectReference: {fileID: 0}
     - target: {fileID: 4089852009388372, guid: b9f61412fbd551745bf2ced48e859fed, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.61
+      value: 4.99
       objectReference: {fileID: 0}
     - target: {fileID: 4089852009388372, guid: b9f61412fbd551745bf2ced48e859fed, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2294,7 +2285,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4089852009388372, guid: b9f61412fbd551745bf2ced48e859fed, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 248.63
       objectReference: {fileID: 0}
     - target: {fileID: 4089852009388372, guid: b9f61412fbd551745bf2ced48e859fed, type: 3}
       propertyPath: m_LocalRotation.x
@@ -2326,11 +2317,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4089852009388372, guid: b9f61412fbd551745bf2ced48e859fed, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 50847655851233674, guid: b9f61412fbd551745bf2ced48e859fed,
-        type: 3}
-      propertyPath: m_GravityScale
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3113,10 +3099,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vase_0002
       objectReference: {fileID: 0}
-    - target: {fileID: 1258865455330982, guid: 5da5dcf92de6b83479b5dfda7602675c, type: 3}
-      propertyPath: m_TagString
-      value: item
-      objectReference: {fileID: 0}
     - target: {fileID: 4302508466524978, guid: 5da5dcf92de6b83479b5dfda7602675c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.99
@@ -3159,11 +3141,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4302508466524978, guid: 5da5dcf92de6b83479b5dfda7602675c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 50752074737299558, guid: 5da5dcf92de6b83479b5dfda7602675c,
-        type: 3}
-      propertyPath: m_GravityScale
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3290,13 +3267,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel
       objectReference: {fileID: 0}
-    - target: {fileID: 1340090058498080, guid: b9f61412fbd551745bf2ced48e859fed, type: 3}
-      propertyPath: m_TagString
-      value: item
-      objectReference: {fileID: 0}
     - target: {fileID: 4089852009388372, guid: b9f61412fbd551745bf2ced48e859fed, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.99
+      value: 6.37
       objectReference: {fileID: 0}
     - target: {fileID: 4089852009388372, guid: b9f61412fbd551745bf2ced48e859fed, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3304,7 +3277,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4089852009388372, guid: b9f61412fbd551745bf2ced48e859fed, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 248.63
       objectReference: {fileID: 0}
     - target: {fileID: 4089852009388372, guid: b9f61412fbd551745bf2ced48e859fed, type: 3}
       propertyPath: m_LocalRotation.x
@@ -3336,11 +3309,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4089852009388372, guid: b9f61412fbd551745bf2ced48e859fed, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 50847655851233674, guid: b9f61412fbd551745bf2ced48e859fed,
-        type: 3}
-      propertyPath: m_GravityScale
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

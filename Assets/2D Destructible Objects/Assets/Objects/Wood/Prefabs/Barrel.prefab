@@ -61,7 +61,7 @@ GameObject:
   - component: {fileID: 114610880714957966}
   m_Layer: 0
   m_Name: Barrel
-  m_TagString: Untagged
+  m_TagString: item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -146,7 +146,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -162,7 +162,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -196,6 +196,7 @@ MonoBehaviour:
   - {fileID: 114169055541362384}
   - {fileID: 114617368697671178}
   - {fileID: 114911009725273306}
+  isBroken: 0
 --- !u!1 &1468192649633924
 GameObject:
   m_ObjectHideFlags: 0
