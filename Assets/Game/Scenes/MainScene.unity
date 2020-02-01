@@ -4168,6 +4168,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1873666466, guid: 7c535c55443104326b1a4084b23333e5, type: 3}
+      propertyPath: TalkSounds
+      value: 
+      objectReference: {fileID: 8300000, guid: bc5dda9645b126e46922feba725d3710, type: 3}
+    - target: {fileID: 1873666466, guid: 7c535c55443104326b1a4084b23333e5, type: 3}
+      propertyPath: WalkSounds
+      value: 
+      objectReference: {fileID: 8300000, guid: 217faab79b1238c489313379e3b7e111, type: 3}
     - target: {fileID: 1725507625689552010, guid: 7c535c55443104326b1a4084b23333e5,
         type: 3}
       propertyPath: m_Name
@@ -4399,6 +4407,16 @@ PrefabInstance:
       propertyPath: cage_script
       value: 
       objectReference: {fileID: 423511446}
+    - target: {fileID: 5471356974299766287, guid: 196e3f9e8e60045f88527e4fa39ff69c,
+        type: 3}
+      propertyPath: WalkSounds
+      value: 
+      objectReference: {fileID: 8300000, guid: 62377bed7addac34aa0f07bef6ed29e8, type: 3}
+    - target: {fileID: 5471356974299766287, guid: 196e3f9e8e60045f88527e4fa39ff69c,
+        type: 3}
+      propertyPath: TalkSounds
+      value: 
+      objectReference: {fileID: 8300000, guid: bc5dda9645b126e46922feba725d3710, type: 3}
     - target: {fileID: 7238968137500745404, guid: 196e3f9e8e60045f88527e4fa39ff69c,
         type: 3}
       propertyPath: m_LocalPosition.x

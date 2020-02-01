@@ -13,6 +13,7 @@ public class CatScript : MonoBehaviour
     [SerializeField] GameObject Icon;
     [SerializeField] AudioClip TalkSounds;
     [SerializeField] AudioClip WalkSounds;
+    
     private Rigidbody2D _rigidbody2D;
     private GameManager _gameManager;
     private Animator _animator;
