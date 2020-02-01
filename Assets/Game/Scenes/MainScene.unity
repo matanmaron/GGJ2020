@@ -5874,6 +5874,11 @@ PrefabInstance:
       propertyPath: HumanScore
       value: 
       objectReference: {fileID: 738251825}
+    - target: {fileID: 5471356974299766287, guid: 196e3f9e8e60045f88527e4fa39ff69c,
+        type: 3}
+      propertyPath: UIPanel
+      value: 
+      objectReference: {fileID: 367564018}
     - target: {fileID: 7238968137500745404, guid: 196e3f9e8e60045f88527e4fa39ff69c,
         type: 3}
       propertyPath: m_LocalPosition.x

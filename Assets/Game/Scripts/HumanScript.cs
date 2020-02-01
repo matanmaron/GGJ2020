@@ -8,6 +8,7 @@ public class HumanScript : MonoBehaviour
     [SerializeField] bool IsDebug = false;
     [SerializeField] float Speed = 1;
     [SerializeField] private GameObject PausePanel;
+    [SerializeField] private GameObject UIPanel;
     [SerializeField] float JumpSpeed = 10;
     [SerializeField] GameObject Icon;
     [SerializeField] CageScript cage_script;
@@ -63,6 +64,7 @@ public class HumanScript : MonoBehaviour
         {//only in human ! no need to copy on cat!
             _gameManager.GamePaused = !_gameManager.GamePaused;
             PausePanel.SetActive(_gameManager.GamePaused);
+            UIPanel.SetActive(!_gameManager.GamePaused);
         }
         if (!_gameManager.GamePaused)
         {
