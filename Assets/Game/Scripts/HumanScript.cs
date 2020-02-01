@@ -298,7 +298,7 @@ public class HumanScript : MonoBehaviour
                 PlayRandomSFX();
                 if (_gameManager.CatScore>0)
                 {
-                    _gameManager.CatScore--;
+                    //_gameManager.CatScore--;
                 }
                 _gameManager.HumanScore++;
                 ShowScore();
