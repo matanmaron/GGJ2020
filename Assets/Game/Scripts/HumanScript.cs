@@ -10,6 +10,7 @@ public class HumanScript : MonoBehaviour
     [SerializeField] float JumpSpeed = 10;
     [SerializeField] GameObject Icon;
     [SerializeField] CageScript cage_script;
+    [SerializeField] GameObject CubePos;
     private Rigidbody2D _rigidbody2D;
     private GameManager _gameManager;
     private Animator _animator;
@@ -24,11 +25,13 @@ public class HumanScript : MonoBehaviour
     private bool _changeFace = false;
     private bool _isGround = false;
     private bool _tuchedCat = false;
-    private Vector3 cat_cage_location = new Vector3(1, -4.5f, -3);
     private bool _isFixing = false;
+
 
     void Start()
     {
+        
+        
         if (IsDebug) { Debug.Log("*** HumanScript debug is on ***"); }
         _rigidbody2D = GetComponent<Rigidbody2D>();
         if (IsDebug && _rigidbody2D == null) { Debug.Log("cannot find human Rigidbody2D"); }
@@ -174,8 +177,9 @@ public class HumanScript : MonoBehaviour
         if(collision.gameObject.tag =="cat")
         {
             if (IsDebug) { Debug.Log("human catched the cat"); }
-            collision.otherCollider.transform.Translate(cat_cage_location,Space.World);
-            cage_script.Lock_The_Cage();
+            //collision.transform.Translate(CubePos.transform.position);
+            collision.gameObject.transform.position = CubePos.transform.position;
+            cage_script.Lock();
         }
     }
 
