@@ -9,6 +9,7 @@ public class HumanScript : MonoBehaviour
     [SerializeField] private GameObject PausePanel;
     [SerializeField] float JumpSpeed = 10;
     [SerializeField] GameObject Icon;
+    [SerializeField] GameObject Cat_Cage;
     private Rigidbody2D _rigidbody2D;
     private GameManager _gameManager;
     private Animator _animator;
@@ -23,6 +24,9 @@ public class HumanScript : MonoBehaviour
     private bool _changeFace = false;
     private bool _isGround = false;
     private bool _fixSuccess = false;
+    private bool _tuchedCat = false;
+    private Vector3 cat_cage_location = new Vector3(1, -4.5f, -3);
+
 
     void Start()
     {
@@ -137,6 +141,12 @@ public class HumanScript : MonoBehaviour
         {
             _isGround = true;
             if (IsDebug) { Debug.Log("human ground is: "+_isGround); }
+        }
+        if(collision.gameObject.tag =="cat")
+        {
+            if (IsDebug) { Debug.Log("human catched the cat"); }
+            collision.otherCollider.transform.Translate(cat_cage_location,Space.World);
+            //Cat_Cage.lockTheCat();
         }
     }
 
