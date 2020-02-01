@@ -11,9 +11,12 @@ public class HumanScript : MonoBehaviour
     [SerializeField] GameObject Icon;
     [SerializeField] CageScript cage_script;
     [SerializeField] GameObject CubePos;
+    [SerializeField] AudioClip TalkSounds;
+    [SerializeField] AudioClip WalkSounds;
     private Rigidbody2D _rigidbody2D;
     private GameManager _gameManager;
     private Animator _animator;
+    private AudioSource _audioSource;
     private KeyCode _keyleft;
     private KeyCode _keyright;
     private KeyCode _keyup;
@@ -128,6 +131,7 @@ public class HumanScript : MonoBehaviour
             _face = Face.Left;
             _changeFace = true;
             _animator.Play("Walk");
+            _audioSource.PlayOneShot(WalkSounds);
         }
         if (Input.GetKey(_keyright))
         {
@@ -138,6 +142,7 @@ public class HumanScript : MonoBehaviour
             _face = Face.Right;
             _changeFace = true;
             _animator.Play("Walk");
+            _audioSource.PlayOneShot(WalkSounds);
         }
 
         if (!move && !stoped)
@@ -180,6 +185,7 @@ public class HumanScript : MonoBehaviour
             //collision.transform.Translate(CubePos.transform.position);
             collision.gameObject.transform.position = CubePos.transform.position;
             cage_script.Lock();
+            _audioSource.PlayOneShot(TalkSounds);
         }
     }
 
@@ -209,6 +215,7 @@ public class HumanScript : MonoBehaviour
                 Icon.SetActive(true);
                 _isFixing = true;
                 _animator.Play("Mad");
+                _audioSource.PlayOneShot(TalkSounds);
                 StartCoroutine(FixStuff(other));
             }
         }
