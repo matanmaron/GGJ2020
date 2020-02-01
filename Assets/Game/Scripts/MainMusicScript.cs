@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class MainMusicScript : MonoBehaviour
 {
-    [SerializeField] private AudioSource music;
+    [SerializeField] private AudioSource music =null;
 
     void Start()
     {
+
         music.Play();
     }
 }
