@@ -10,6 +10,7 @@ public class DestroyDiningScript : MonoBehaviour, IItemDestroyAndFixScript
     public bool HitItem(bool isFix)
     {
         _animator = gameObject.GetComponent<Animator>();
+        Debug.Log("no dining animator");
         if (isFix && isBroken)
         {
             FixReceived();
