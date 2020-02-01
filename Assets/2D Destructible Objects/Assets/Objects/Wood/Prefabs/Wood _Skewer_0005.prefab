@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 50886174753473508}
   - component: {fileID: 61674720719030598}
   - component: {fileID: 114944788973946328}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wood _Skewer_0005
   m_TagString: Untagged
   m_Icon: {fileID: 0}

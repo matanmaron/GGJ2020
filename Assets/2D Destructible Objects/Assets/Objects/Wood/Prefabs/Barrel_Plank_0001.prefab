@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 50402150559002572}
   - component: {fileID: 61426450983943988}
   - component: {fileID: 114205102625736764}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Barrel_Plank_0001
   m_TagString: Untagged
   m_Icon: {fileID: 0}

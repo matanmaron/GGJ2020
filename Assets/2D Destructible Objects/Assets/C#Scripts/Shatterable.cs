@@ -9,10 +9,12 @@ public class Shatterable : MonoBehaviour, IItemDestroyAndFixScript, IHittable
     private SpriteRenderer render;
     public bool isBroken = false;
 
+    private List<GameObject> _shards;
     // Use this for initialization
     void Start()
     {
         render = GetComponent<SpriteRenderer>();
+        _shards = new List<GameObject>();
     }
 
     public void HitReceived()
@@ -32,7 +34,11 @@ public class Shatterable : MonoBehaviour, IItemDestroyAndFixScript, IHittable
 
         foreach (Spawner spawn in spawnPoints)
         {
-            spawn.Spawn();
+            var i = spawn.Spawn();
+            if (i != null)
+            {
+                _shards.Add(i);
+            }
         }
 
     }
@@ -41,10 +47,11 @@ public class Shatterable : MonoBehaviour, IItemDestroyAndFixScript, IHittable
     {
         isBroken = false;
         render.enabled = true;
-        foreach (Spawner spawn in spawnPoints)
+        foreach (GameObject s in _shards)
         {
-            spawn.enabled = false;
+            GameObject.Destroy(s.gameObject);
         }
+        _shards = new List<GameObject>();
     }
 
     public void HitItem(bool isFix)

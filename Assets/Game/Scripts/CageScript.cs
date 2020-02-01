@@ -5,24 +5,22 @@ using UnityEngine;
 public class CageScript : MonoBehaviour
 {
     BoxCollider2D _collider;
-    // Start is called before the first frame update
+    SpriteRenderer _sprite;
+    
     void Start()
     {
         _collider = gameObject.GetComponent<BoxCollider2D>();
-
+        _sprite = GetComponentInChildren<SpriteRenderer>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public IEnumerator Toggle_Cage()
     {
         Debug.Log("cage locked");
         _collider.enabled = true;
+        _sprite.enabled = true;
         yield return new WaitForSeconds(5);
         _collider.enabled = false;
+        _sprite.enabled = false;
         Debug.Log("cage unlocked");
     }
 

@@ -208,6 +208,7 @@ public class HumanScript : MonoBehaviour
                 //_animator.Play("sound");
                 Icon.SetActive(true);
                 _isFixing = true;
+                _animator.Play("Mad");
                 StartCoroutine(FixStuff(other));
             }
         }

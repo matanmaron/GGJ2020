@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Piece : MonoBehaviour
 {
-    public float torqueMultiplier = 50;
-    public Vector2 shardSpeedMultiplier = new Vector2(150, 500);
+    public float torqueMultiplier = 1;
+    public Vector2 shardSpeedMultiplier = new Vector2(5, 10);
 
     public float fadingSpeed = 1f;
     public float startFadingAfterSeconds = 5f;
@@ -41,7 +41,7 @@ public class Piece : MonoBehaviour
         }
         rigid.AddForce(force);
     }
-
+/*
     void Update()
     {
         if (isActive)
@@ -51,12 +51,12 @@ public class Piece : MonoBehaviour
 
         if (makeTransparent)
         {
-            MakeTransparent();
+            //MakeTransparent();
         }
 
         if (killMe)
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 
@@ -92,5 +92,5 @@ public class Piece : MonoBehaviour
             currentTime = 0;
             makeTransparent = true;
         }
-    }
+    }*/
 }
