@@ -42,7 +42,7 @@ public class Shatterable : MonoBehaviour, IHittable
         render.enabled = true;
         foreach (Spawner spawn in spawnPoints)
         {
-            GameObject.Destroy(spawn);
+            spawn.enabled = false;
         }
     }
 }

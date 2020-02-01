@@ -14,7 +14,7 @@ public class HumanScript : MonoBehaviour
     private GameManager _gameManager;
     private Animator _animator;
     private KeyCode _keyleft;
-    private KeyCode _keyrigth;
+    private KeyCode _keyright;
     private KeyCode _keyup;
     private KeyCode _keydown;
     private KeyCode _keyjump;
@@ -23,10 +23,9 @@ public class HumanScript : MonoBehaviour
     private Face _face = Face.Left;
     private bool _changeFace = false;
     private bool _isGround = false;
-    private bool _fixSuccess = false;
     private bool _tuchedCat = false;
     private Vector3 cat_cage_location = new Vector3(1, -4.5f, -3);
-
+    private bool _isFixing = false;
 
     void Start()
     {
@@ -40,7 +39,7 @@ public class HumanScript : MonoBehaviour
         _animator = transform.gameObject.GetComponentInChildren<Animator>();
         if (IsDebug && _animator == null) { Debug.Log("cannot find human Animator"); }
         _keyleft = _gameManager.HumanLeft;
-        _keyrigth = _gameManager.HumanRight;
+        _keyright = _gameManager.HumanRight;
         _keyup = _gameManager.HumanUp;
         _keydown = _gameManager.HumanDown;
         _keyjump = _gameManager.HumanJump;
@@ -57,10 +56,40 @@ public class HumanScript : MonoBehaviour
         }
         if (!_gameManager.GamePaused)
         {
+            StopFix();
             Move();
             ChangeFace();
             DoJump();
         }
+    }
+
+    private void StopFix()
+    {
+        if (_isFixing && IsHumanInput() && !Input.GetKey(_keyAction) && Input.anyKey)
+        {
+            if (IsDebug)
+            {
+                Debug.Log($"breaking stops !!!");
+            }
+
+            _isFixing = false;
+            StopCoroutine(FixStuff(null)); // TODO really need this?
+            Icon.SetActive(false);
+        }
+    }
+
+    private bool IsHumanInput()
+    {
+        if (Input.GetKey(_keydown) || 
+            Input.GetKey(_keyup) ||
+            Input.GetKey(_keyleft) ||
+            Input.GetKey(_keyright) ||
+            Input.GetKey(_keyAction) ||
+            Input.GetKey(_keyjump))
+        {
+            return true;
+        }
+        return false;
     }
 
     private void ChangeFace()
@@ -97,7 +126,7 @@ public class HumanScript : MonoBehaviour
             _changeFace = true;
             _animator.Play("Walk");
         }
-        if (Input.GetKey(_keyrigth))
+        if (Input.GetKey(_keyright))
         {
             //if (IsDebug) { Debug.Log("human right"); }
             _rigidbody2D.velocity = new Vector2(Speed, _rigidbody2D.velocity.y);
@@ -164,25 +193,17 @@ public class HumanScript : MonoBehaviour
                 HandleLadders(other, Ladder.Down);
             }
         }
-        else
+        else if (other.gameObject.tag == "item")
         {
-            if (!Input.GetKey(_keyAction) && Input.anyKey)
+            if (!_isFixing && Input.GetKey(_keyAction))
             {
                 if (IsDebug)
                 {
-                    Debug.Log($"fixing stops !!!");
+                    Debug.Log($"fixing starts");
                 }
-
-                StopCoroutine(FixStuff(other));
-                _fixSuccess = false;
-                Icon.SetActive(false);
-            }
-
-            if (Input.GetKey(_keyAction))
-            {
-                if (IsDebug){ Debug.Log($"fixing starts"); }
-
+                //_animator.Play("sound");
                 Icon.SetActive(true);
+                _isFixing = true;
                 StartCoroutine(FixStuff(other));
             }
         }
@@ -207,10 +228,13 @@ public class HumanScript : MonoBehaviour
     IEnumerator FixStuff(Collider2D other)
     {
         yield return new WaitForSeconds(2);
-        _fixSuccess = true;
-        if (IsDebug) { Debug.Log($"human fixed {other.gameObject.name} successfully"); }
-        //fix
-        _fixSuccess = false;
-        Icon.SetActive(false);
+        if (_isFixing)
+        {
+            if (IsDebug) { Debug.Log($"human fix {other.gameObject.name} successfully"); }
+            var script = other.GetComponent<ItemDestroyAndFixScript>();
+            script.HitItem(true);
+            Icon.SetActive(false);
+            _isFixing = false;
+        }
     }
 }

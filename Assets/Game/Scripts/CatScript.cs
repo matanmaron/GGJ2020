@@ -15,7 +15,7 @@ public class CatScript : MonoBehaviour
     private GameManager _gameManager;
     private Animator _animator;
     private KeyCode _keyleft;
-    private KeyCode _keyrigth;
+    private KeyCode _keyright;
     private KeyCode _keyup;
     private KeyCode _keydown;
     private KeyCode _keyjump;
@@ -39,7 +39,7 @@ public class CatScript : MonoBehaviour
         _animator = transform.gameObject.GetComponentInChildren<Animator>();
         if (IsDebug && _animator == null) { Debug.Log("cannot find cat Animator"); }
         _keyleft = _gameManager.CatLeft;
-        _keyrigth = _gameManager.CatRight;
+        _keyright = _gameManager.CatRight;
         _keyup = _gameManager.CatUp;
         _keydown = _gameManager.CatDown;
         _keyjump = _gameManager.CatJump;
@@ -60,7 +60,7 @@ public class CatScript : MonoBehaviour
 
     private void StopBreak()
     {
-        if (_isBreaking && !Input.GetKey(_keyAction) && Input.anyKey)
+        if (_isBreaking && IsCatInput() && !Input.GetKey(_keyAction) && Input.anyKey)
         {
             if (IsDebug)
             {
@@ -73,6 +73,20 @@ public class CatScript : MonoBehaviour
         }
     }
 
+    private bool IsCatInput()
+    {
+        if (Input.GetKey(_keydown) || 
+            Input.GetKey(_keyup) ||
+            Input.GetKey(_keyleft) ||
+            Input.GetKey(_keyright) ||
+            Input.GetKey(_keyAction) ||
+            Input.GetKey(_keyjump))
+        {
+            return true;
+        }
+        return false;
+    }
+    
     private void ChangeFace()
     {
         if (_changeFace)
@@ -107,7 +121,7 @@ public class CatScript : MonoBehaviour
             _changeFace = true;
             _animator.Play("Walk");
         }
-        if (Input.GetKey(_keyrigth))
+        if (Input.GetKey(_keyright))
         {
             //if (IsDebug) { Debug.Log("cat right"); }
             _rigidbody2D.velocity = new Vector2(Speed, _rigidbody2D.velocity.y);
@@ -185,7 +199,6 @@ public class CatScript : MonoBehaviour
         if (_isBreaking)
         {
             if (IsDebug) { Debug.Log($"cat break {other.gameObject.name} successfully"); }
-            //break
             var script = other.GetComponent<ItemDestroyAndFixScript>();
             script.HitItem(false);
             Icon.SetActive(false);
