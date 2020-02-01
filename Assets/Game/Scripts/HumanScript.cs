@@ -175,6 +175,7 @@ public class HumanScript : MonoBehaviour
     {
         _gameManager.GamePaused = !_gameManager.GamePaused;
         PausePanel.SetActive(_gameManager.GamePaused);
+        UIPanel.SetActive(!_gameManager.GamePaused);
         if (IsDebug) { Debug.Log("pause is " + _gameManager.GamePaused); }
     }
     
@@ -248,6 +249,10 @@ public class HumanScript : MonoBehaviour
     private void HandleLadders(Collider2D other, Ladder ladder)
     {
         var num = other.name[1];
+        if (num == 52 || num == 53)
+        {
+            return;
+        }
         var dir = other.name[2];
         if ((ladder == Ladder.Down && dir == 'D') || (ladder == Ladder.Up && dir == 'U'))
         {
