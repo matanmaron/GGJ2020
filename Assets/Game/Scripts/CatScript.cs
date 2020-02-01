@@ -11,9 +11,12 @@ public class CatScript : MonoBehaviour
     [SerializeField] float Speed = 1;
     [SerializeField] float JumpSpeed = 10;
     [SerializeField] GameObject Icon;
+    [SerializeField] AudioClip TalkSounds;
+    [SerializeField] AudioClip WalkSounds;
     private Rigidbody2D _rigidbody2D;
     private GameManager _gameManager;
     private Animator _animator;
+    private AudioSource _audioSource;
     private KeyCode _keyleft;
     private KeyCode _keyright;
     private KeyCode _keyup;
@@ -30,7 +33,7 @@ public class CatScript : MonoBehaviour
     {
         if (IsDebug) { Debug.Log("*** CatScript debug is on ***"); }
         _rigidbody2D = GetComponent<Rigidbody2D>();
-        
+        _audioSource = GetComponent<AudioSource>();
         if (IsDebug && _rigidbody2D == null) { Debug.Log("cannot find cat Rigidbody2D"); }
         var gm = GameObject.Find("GameManager");
         if (IsDebug && gm == null) { Debug.Log("cannot find cat GameManager"); }
@@ -120,6 +123,7 @@ public class CatScript : MonoBehaviour
             _face = Face.Left;
             _changeFace = true;
             _animator.Play("Walk");
+            _audioSource.PlayOneShot(WalkSounds);
         }
         if (Input.GetKey(_keyright))
         {
@@ -129,7 +133,9 @@ public class CatScript : MonoBehaviour
             move = true;
             _face = Face.Right;
             _changeFace = true;
+
             _animator.Play("Walk");
+            _audioSource.PlayOneShot(WalkSounds);
         }
         
 
@@ -189,6 +195,7 @@ public class CatScript : MonoBehaviour
                 Icon.SetActive(true);
                 _isBreaking = true;
                 StartCoroutine(BreakStuff(other));
+                _audioSource.PlayOneShot(TalkSounds);
             }
         }
     }
