@@ -24,8 +24,8 @@ public class CatScript : MonoBehaviour
     private Face _face = Face.Left;
     private bool _changeFace = false;
     private bool _isGround = false;
-    private bool _breakSuccess = false;
-
+    private bool _isBreaking = false;
+    
     void Start()
     {
         if (IsDebug) { Debug.Log("*** CatScript debug is on ***"); }
@@ -51,9 +51,25 @@ public class CatScript : MonoBehaviour
     {
         if (!_gameManager.GamePaused)
         {
+            StopBreak();
             ChangeMove();
             ChangeFace();
             DoJump();
+        }
+    }
+
+    private void StopBreak()
+    {
+        if (_isBreaking && !Input.GetKey(_keyAction) && Input.anyKey)
+        {
+            if (IsDebug)
+            {
+                Debug.Log($"breaking stops !!!");
+            }
+
+            _isBreaking = false;
+            StopCoroutine(BreakStuff(null));
+            Icon.SetActive(false);
         }
     }
 
@@ -147,28 +163,17 @@ public class CatScript : MonoBehaviour
                 HandleLadders(other, Ladder.Down);
             }
         }
-        else
+        else if (other.gameObject.tag == "item")
         {
-            if (!Input.GetKey(_keyAction) && Input.anyKey)
-            {
-                if (IsDebug)
-                {
-                    Debug.Log($"breaking stops !!!");
-                }
-
-                StopCoroutine(BreakStuff(other));
-                _breakSuccess = false;
-                Icon.SetActive(false);
-            }
-
-            if (Input.GetKey(_keyAction))
+            if (!_isBreaking && Input.GetKey(_keyAction))
             {
                 if (IsDebug)
                 {
                     Debug.Log($"breaking starts");
                 }
-
+                _animator.Play("sound");
                 Icon.SetActive(true);
+                _isBreaking = true;
                 StartCoroutine(BreakStuff(other));
             }
         }
@@ -177,11 +182,13 @@ public class CatScript : MonoBehaviour
     IEnumerator BreakStuff(Collider2D other)
     {
         yield return new WaitForSeconds(1);
-        _breakSuccess = true;
-        if (IsDebug) { Debug.Log($"cat break {other.gameObject.name} successfully"); }
-        //break
-        _breakSuccess = false;
-        Icon.SetActive(false);
+        if (_isBreaking)
+        {
+            if (IsDebug) { Debug.Log($"cat break {other.gameObject.name} successfully"); }
+            //break
+            Icon.SetActive(false);
+            _isBreaking = false;
+        }
     }
     
     private void HandleLadders(Collider2D other, Ladder ladder)

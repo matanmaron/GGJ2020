@@ -341,6 +341,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vase_0011
       objectReference: {fileID: 0}
+    - target: {fileID: 1298110795410774, guid: 0fa2818732bc0414282019efb2c0cb2c, type: 3}
+      propertyPath: m_TagString
+      value: item
+      objectReference: {fileID: 0}
     - target: {fileID: 4394209639061292, guid: 0fa2818732bc0414282019efb2c0cb2c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.02
@@ -745,16 +749,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6f9d800a5c59443cb713ae9899fbd71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsDebug: 1
-  Ladders1:
-  - {fileID: 664205045}
-  - {fileID: 1328133204}
-  Ladders2:
-  - {fileID: 0}
-  - {fileID: 0}
-  Ladders3:
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1 &485339340
 GameObject:
   m_ObjectHideFlags: 0
