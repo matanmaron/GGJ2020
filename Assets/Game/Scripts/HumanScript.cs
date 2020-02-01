@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class HumanScript : MonoBehaviour
 {
@@ -35,7 +37,8 @@ public class HumanScript : MonoBehaviour
     private bool _isFixing = false;
     [SerializeField] Text CatScore;
     [SerializeField] Text HumanScore;
-
+    [SerializeField] Text UITimer;
+    private float _timer;
     void Start()
     {
         if (IsDebug) { Debug.Log("*** HumanScript debug is on ***"); }
@@ -56,8 +59,25 @@ public class HumanScript : MonoBehaviour
         _animator.Play("Idle");
         HumanScore.text = "0";
         CatScore.text = "0";
+        _timer = 120;
     }
-    
+
+    private void Update()
+    {
+        _timer = _timer - Time.deltaTime;
+        UITimer.text =  Mathf.RoundToInt(_timer).ToString();
+        if (_timer<=0)
+        {
+            //gameover
+            if (!_gameManager.GamePaused  && Input.GetKey(KeyCode.Escape))
+            {//only in human ! no need to copy on cat!
+                _gameManager.GamePaused = !_gameManager.GamePaused;
+                PausePanel.SetActive(_gameManager.GamePaused);
+                UIPanel.SetActive(!_gameManager.GamePaused);
+            }
+        }
+    }
+
     void LateUpdate()
     {
         if (!_gameManager.GamePaused  && Input.GetKey(KeyCode.Escape))
