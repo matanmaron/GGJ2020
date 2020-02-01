@@ -8,6 +8,7 @@ TagManager:
   - Hittable
   - ladder
   - item
+  - cat
   layers:
   - Default
   - TransparentFX

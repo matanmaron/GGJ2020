@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class CageScript : MonoBehaviour
 {
-    
+    BoxCollider2D _collider;
     // Start is called before the first frame update
     void Start()
     {
-        
+        _collider = gameObject.GetComponent<BoxCollider2D>();
+
     }
 
     // Update is called once per frame
@@ -16,10 +17,19 @@ public class CageScript : MonoBehaviour
     {
         
     }
-    public void Lock_The_Cage()
+    public IEnumerator Toggle_Cage()
     {
-        transform.GetComponent<Collider2D>().enabled=true;
-        new WaitForSeconds(5);
-        transform.GetComponent<Collider2D>().enabled = false;
+        Debug.Log("cage locked");
+        _collider.enabled = true;
+        yield return new WaitForSeconds(5);
+        _collider.enabled = false;
+        Debug.Log("cage unlocked");
     }
+
+    public void Lock()
+    {
+        StartCoroutine(Toggle_Cage());
+    }
+
+   
 }
