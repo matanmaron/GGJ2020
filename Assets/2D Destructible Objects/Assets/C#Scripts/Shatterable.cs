@@ -7,6 +7,7 @@ public class Shatterable : MonoBehaviour, IHittable
     public List<Spawner> spawnPoints;
 
     private SpriteRenderer render;
+    private bool isBroken = false;
 
     // Use this for initialization
     void Start()
@@ -19,6 +20,11 @@ public class Shatterable : MonoBehaviour, IHittable
         Die();
     }
 
+    public void FixReceived()
+    {
+        Fix();
+    }
+
     public void Die()
     {
         render.enabled = false;
@@ -28,6 +34,15 @@ public class Shatterable : MonoBehaviour, IHittable
             spawn.Spawn();
         }
 
-        Destroy(gameObject);
+        isBroken = true;
+    }
+
+    public void Fix()
+    {
+        render.enabled = true;
+        foreach (Spawner spawn in spawnPoints)
+        {
+            GameObject.Destroy(spawn);
+        }
     }
 }

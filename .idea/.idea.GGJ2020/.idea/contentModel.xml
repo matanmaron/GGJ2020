@@ -199,6 +199,7 @@
             <e p="Enums.cs" t="Include" />
             <e p="GameManager.cs" t="Include" />
             <e p="HumanScript.cs" t="Include" />
+            <e p="ItemDestroyAndFixScript.cs" t="Include" />
             <e p="menu" t="Include">
               <e p="menuController.cs" t="Include" />
             </e>

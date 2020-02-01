@@ -68,7 +68,7 @@ public class CatScript : MonoBehaviour
             }
 
             _isBreaking = false;
-            StopCoroutine(BreakStuff(null));
+            StopCoroutine(BreakStuff(null)); // TODO really need this?
             Icon.SetActive(false);
         }
     }
@@ -136,7 +136,7 @@ public class CatScript : MonoBehaviour
             if (IsDebug) { Debug.Log("cat jump"); }
             _rigidbody2D.AddForce(Vector2.up * JumpSpeed, ForceMode2D.Force );
             _isGround = false;
-            _animator.Play("Jump");
+            _animator.Play("Jump");  //TODO can we start in middle anim?
         }
     }
 
@@ -186,6 +186,8 @@ public class CatScript : MonoBehaviour
         {
             if (IsDebug) { Debug.Log($"cat break {other.gameObject.name} successfully"); }
             //break
+            var script = other.GetComponent<ItemDestroyAndFixScript>();
+            script.HitItem(false);
             Icon.SetActive(false);
             _isBreaking = false;
         }
