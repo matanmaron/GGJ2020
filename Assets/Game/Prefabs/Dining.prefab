@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2526449547926603229}
   - component: {fileID: 2526449547926603228}
   - component: {fileID: 2526449547926603231}
+  - component: {fileID: 621182418628153875}
   m_Layer: 0
   m_Name: Dining
   m_TagString: item
@@ -74,6 +75,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBroken: 0
+--- !u!95 &621182418628153875
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2526449547926603218}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 65cf8b9594bdf414f9cbde772b53c8fa, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &2526449546924928677
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -174,7 +194,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 453056, guid: e2b0be9e2392e47e7bea43793aefeb8e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.019795418
+      value: -0.01979542
       objectReference: {fileID: 0}
     - target: {fileID: 453056, guid: e2b0be9e2392e47e7bea43793aefeb8e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -182,7 +202,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 453056, guid: e2b0be9e2392e47e7bea43793aefeb8e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 248.14244
+      value: 248.1424
       objectReference: {fileID: 0}
     - target: {fileID: 453056, guid: e2b0be9e2392e47e7bea43793aefeb8e, type: 3}
       propertyPath: m_LocalRotation.x
