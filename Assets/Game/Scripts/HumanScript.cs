@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -61,6 +62,7 @@ public class HumanScript : MonoBehaviour
         HumanScore.text = "0";
         CatScore.text = "0";
         _timer = 120;
+        _gameManager.GamePaused = false;
     }
 
     private void Update()
@@ -318,5 +320,10 @@ public class HumanScript : MonoBehaviour
         {
             SFX[rand].Play();
         }
+    }
+
+    public void OnButtonEnd()
+    {
+        SceneManager.LoadScene("MenuScene");
     }
 }

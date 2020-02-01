@@ -610,18 +610,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4aa72ffec7e1d4cc2bb3f1872d7a12ef, type: 3}
---- !u!114 &858968766 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6493312818472987325, guid: 4aa72ffec7e1d4cc2bb3f1872d7a12ef,
-    type: 3}
-  m_PrefabInstance: {fileID: 858968765}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be869615ca6254ba98cb887203f2dc59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1063123427
 GameObject:
   m_ObjectHideFlags: 0
@@ -1154,7 +1142,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 858968766}
+      - m_Target: {fileID: 2132020552}
         m_MethodName: OnButtonCredits
         m_Mode: 1
         m_Arguments:
@@ -1357,7 +1345,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 858968766}
+      - m_Target: {fileID: 2132020552}
         m_MethodName: OnButtonExit
         m_Mode: 1
         m_Arguments:
@@ -1486,7 +1474,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 858968766}
+      - m_Target: {fileID: 2132020552}
         m_MethodName: OnCredisBack
         m_Mode: 1
         m_Arguments:
@@ -1615,7 +1603,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 858968766}
+      - m_Target: {fileID: 2132020552}
         m_MethodName: OnButtonStart
         m_Mode: 1
         m_Arguments:
@@ -1757,10 +1745,9 @@ GameObject:
   - component: {fileID: 2132020550}
   - component: {fileID: 2132020549}
   - component: {fileID: 2132020548}
-  - component: {fileID: 2132020552}
   - component: {fileID: 2132020554}
   - component: {fileID: 2132020553}
-  - component: {fileID: 2132020555}
+  - component: {fileID: 2132020552}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1861,9 +1848,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2132020547}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f0267a06ce86d74e80ccdf7686b8c1f, type: 3}
+  m_Script: {fileID: 11500000, guid: 02c834991b768470c80ea0475b031283, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  credits: {fileID: 590852131}
 --- !u!114 &2132020553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1900,15 +1888,3 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2132020547}
   m_CullTransparentMesh: 0
---- !u!114 &2132020555
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2132020547}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f0267a06ce86d74e80ccdf7686b8c1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
