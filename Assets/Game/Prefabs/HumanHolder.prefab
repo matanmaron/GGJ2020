@@ -179,7 +179,7 @@ MonoBehaviour:
   PausePanel: {fileID: 0}
   JumpSpeed: 200
   Icon: {fileID: 185002653187433350}
-  Cat_Cage: {fileID: 0}
+  cage_script: {fileID: 0}
 --- !u!1 &6007511645281958799
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shatterable : MonoBehaviour, IHittable
+public class Shatterable : MonoBehaviour, IItemDestroyAndFixScript, IHittable
 {
     public List<Spawner> spawnPoints;
 
     private SpriteRenderer render;
-    private bool isBroken = false;
+    public bool isBroken = false;
 
     // Use this for initialization
     void Start()
@@ -27,6 +27,7 @@ public class Shatterable : MonoBehaviour, IHittable
 
     public void Die()
     {
+        isBroken = true;
         render.enabled = false;
 
         foreach (Spawner spawn in spawnPoints)
@@ -34,15 +35,27 @@ public class Shatterable : MonoBehaviour, IHittable
             spawn.Spawn();
         }
 
-        isBroken = true;
     }
 
     public void Fix()
     {
+        isBroken = false;
         render.enabled = true;
         foreach (Spawner spawn in spawnPoints)
         {
             spawn.enabled = false;
+        }
+    }
+
+    public void HitItem(bool isFix)
+    {
+        if (isFix && isBroken)
+        {
+            FixReceived();
+        }
+        else if (!isFix && !isBroken)
+        {
+            HitReceived();
         }
     }
 }

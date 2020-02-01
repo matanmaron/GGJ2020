@@ -199,7 +199,7 @@ public class CatScript : MonoBehaviour
         if (_isBreaking)
         {
             if (IsDebug) { Debug.Log($"cat break {other.gameObject.name} successfully"); }
-            var script = other.GetComponent<ItemDestroyAndFixScript>();
+            var script = other.GetComponent<IItemDestroyAndFixScript>();
             script.HitItem(false);
             Icon.SetActive(false);
             _isBreaking = false;
