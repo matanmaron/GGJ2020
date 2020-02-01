@@ -235,7 +235,7 @@ public class HumanScript : MonoBehaviour
         if (_isFixing)
         {
             if (IsDebug) { Debug.Log($"human fix {other.gameObject.name} successfully"); }
-            var script = other.GetComponent<ItemDestroyAndFixScript>();
+            var script = other.GetComponent<IItemDestroyAndFixScript>();
             script.HitItem(true);
             Icon.SetActive(false);
             _isFixing = false;
