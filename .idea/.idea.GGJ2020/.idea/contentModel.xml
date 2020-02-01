@@ -200,6 +200,7 @@
             <e p="DestroyDiningScript.cs" t="Include" />
             <e p="Enums.cs" t="Include" />
             <e p="GameManager.cs" t="Include" />
+            <e p="GameOverScript.cs" t="Include" />
             <e p="HumanScript.cs" t="Include" />
             <e p="IItemDestroyAndFixScript.cs" t="Include" />
             <e p="MainMusicScript.cs" t="Include" />

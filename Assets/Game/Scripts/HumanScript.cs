@@ -11,6 +11,7 @@ public class HumanScript : MonoBehaviour
     [SerializeField] float Speed = 1;
     [SerializeField] private GameObject PausePanel;
     [SerializeField] private GameObject UIPanel;
+    [SerializeField] private GameObject GameOverPanel;
     [SerializeField] float JumpSpeed = 10;
     [SerializeField] GameObject Icon;
     [SerializeField] CageScript cage_script;
@@ -64,16 +65,16 @@ public class HumanScript : MonoBehaviour
 
     private void Update()
     {
-        _timer = _timer - Time.deltaTime;
-        UITimer.text =  Mathf.RoundToInt(_timer).ToString();
-        if (_timer<=0)
+        if (!_gameManager.GamePaused)
         {
-            //gameover
-            if (!_gameManager.GamePaused)
-            {//only in human ! no need to copy on cat!
-                _gameManager.GamePaused = !_gameManager.GamePaused;
-                PausePanel.SetActive(_gameManager.GamePaused);
-                UIPanel.SetActive(!_gameManager.GamePaused);
+            _timer = _timer - Time.deltaTime;
+            UITimer.text = Mathf.RoundToInt(_timer).ToString();
+            if (_timer <= 0)
+            {
+                //gameover
+                _gameManager.GamePaused = true;
+                GameOverPanel.SetActive(true);
+                GameOverPanel.GetComponent<GameOverScript>().Win(_gameManager);
             }
         }
     }
@@ -296,11 +297,7 @@ public class HumanScript : MonoBehaviour
             if (script.HitItem(true))
             {
                 PlayRandomSFX();
-                if (_gameManager.CatScore>0)
-                {
-                    //_gameManager.CatScore--;
-                }
-                _gameManager.HumanScore++;
+                _gameManager.HumanScore+=3;
                 ShowScore();
             }
             Icon.SetActive(false);

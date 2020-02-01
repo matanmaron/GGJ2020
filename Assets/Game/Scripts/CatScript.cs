@@ -230,7 +230,7 @@ public class CatScript : MonoBehaviour
             if (script.HitItem(false))
             {
                 PlayRandomSFX();
-                _gameManager.CatScore++;
+                _gameManager.CatScore+=2;
                 ShowScore();
             }
             Icon.SetActive(false);
