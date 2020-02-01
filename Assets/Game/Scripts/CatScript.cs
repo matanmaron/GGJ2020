@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CatScript : MonoBehaviour
 {
@@ -10,8 +11,9 @@ public class CatScript : MonoBehaviour
     [SerializeField] float Speed = 1;
     [SerializeField] float JumpSpeed = 10;
     [SerializeField] GameObject Icon;
-    [SerializeField] AudioClip TalkSounds;
-    [SerializeField] AudioClip WalkSounds;
+    [SerializeField] AudioSource TalkSounds;
+    [SerializeField] AudioSource WalkSounds;
+    [SerializeField] Text CatScore;
     
     private Rigidbody2D _rigidbody2D;
     private GameManager _gameManager;
@@ -48,6 +50,7 @@ public class CatScript : MonoBehaviour
         _keyjump = _gameManager.CatJump;
         _keyAction = _gameManager.CatAction;
         _animator.Play("Idle");
+        CatScore.text = "0";
     }
     
     void LateUpdate()
@@ -123,7 +126,11 @@ public class CatScript : MonoBehaviour
             _face = Face.Left;
             _changeFace = true;
             _animator.Play("Walk");
-            _audioSource.PlayOneShot(WalkSounds);
+            //_audioSource.PlayOneShot(WalkSounds);
+            if (!WalkSounds.isPlaying)
+            {
+                WalkSounds.Play();
+            }
         }
         if (Input.GetKey(_keyright))
         {
@@ -135,7 +142,11 @@ public class CatScript : MonoBehaviour
             _changeFace = true;
 
             _animator.Play("Walk");
-            _audioSource.PlayOneShot(WalkSounds);
+            //_audioSource.PlayOneShot(WalkSounds);
+            if (!WalkSounds.isPlaying)
+            {
+                WalkSounds.Play();
+            }
         }
         
 
@@ -146,6 +157,10 @@ public class CatScript : MonoBehaviour
             _rigidbody2D.velocity = Vector2.zero;
             _stoped = true;
             _animator.Play("Idle");
+            if (WalkSounds.isPlaying)
+            {
+                WalkSounds.Stop();
+            }
         }
     }
 
@@ -187,6 +202,10 @@ public class CatScript : MonoBehaviour
         {
             if (!_isBreaking && Input.GetKey(_keyAction))
             {
+                if (!TalkSounds.isPlaying)
+                {
+                    TalkSounds.Play();
+                }
                 if (IsDebug)
                 {
                     Debug.Log($"breaking starts");
@@ -195,7 +214,7 @@ public class CatScript : MonoBehaviour
                 Icon.SetActive(true);
                 _isBreaking = true;
                 StartCoroutine(BreakStuff(other));
-                _audioSource.PlayOneShot(TalkSounds);
+                //_audioSource.PlayOneShot(TalkSounds);
             }
         }
     }
@@ -210,6 +229,8 @@ public class CatScript : MonoBehaviour
             script.HitItem(false);
             Icon.SetActive(false);
             _isBreaking = false;
+            _gameManager.CatScore++;
+            ShowScore();
         }
     }
     
@@ -227,5 +248,10 @@ public class CatScript : MonoBehaviour
         if (IsDebug && newpos == null){ Debug.Log("teleporting problem..."); }
 
         transform.position = newpos.gameObject.transform.position;
+    }
+    
+    private void ShowScore()
+    {
+        CatScore.text = _gameManager.CatScore.ToString();
     }
 }

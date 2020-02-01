@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HumanScript : MonoBehaviour
 {
@@ -11,8 +12,8 @@ public class HumanScript : MonoBehaviour
     [SerializeField] GameObject Icon;
     [SerializeField] CageScript cage_script;
     [SerializeField] GameObject CubePos;
-    [SerializeField] AudioClip TalkSounds;
-    [SerializeField] AudioClip WalkSounds;
+    [SerializeField] AudioSource TalkSounds;
+    [SerializeField] AudioSource WalkSounds;
     private Rigidbody2D _rigidbody2D;
     private GameManager _gameManager;
     private Animator _animator;
@@ -29,12 +30,11 @@ public class HumanScript : MonoBehaviour
     private bool _isGround = false;
     private bool _tuchedCat = false;
     private bool _isFixing = false;
-
+    [SerializeField] Text CatScore;
+    [SerializeField] Text HumanScore;
 
     void Start()
     {
-        
-        
         if (IsDebug) { Debug.Log("*** HumanScript debug is on ***"); }
         _rigidbody2D = GetComponent<Rigidbody2D>();
         if (IsDebug && _rigidbody2D == null) { Debug.Log("cannot find human Rigidbody2D"); }
@@ -51,6 +51,8 @@ public class HumanScript : MonoBehaviour
         _keyjump = _gameManager.HumanJump;
         _keyAction = _gameManager.HumanAction;
         _animator.Play("Idle");
+        HumanScore.text = "0";
+        CatScore.text = "0";
     }
     
     void LateUpdate()
@@ -131,7 +133,11 @@ public class HumanScript : MonoBehaviour
             _face = Face.Left;
             _changeFace = true;
             _animator.Play("Walk");
-            _audioSource.PlayOneShot(WalkSounds);
+            //_audioSource.PlayOneShot(WalkSounds);
+            if (!WalkSounds.isPlaying)
+            {
+                WalkSounds.Play();
+            }
         }
         if (Input.GetKey(_keyright))
         {
@@ -142,11 +148,18 @@ public class HumanScript : MonoBehaviour
             _face = Face.Right;
             _changeFace = true;
             _animator.Play("Walk");
-            _audioSource.PlayOneShot(WalkSounds);
+            if (!WalkSounds.isPlaying)
+            {
+                WalkSounds.Play();
+            }
         }
 
         if (!move && !stoped)
         {
+            if (WalkSounds.isPlaying)
+            {
+                WalkSounds.Stop();
+            }
             //if (IsDebug) { Debug.Log("human stop"); }
             _rigidbody2D.velocity = Vector2.zero;
             stoped = true;
@@ -185,7 +198,11 @@ public class HumanScript : MonoBehaviour
             //collision.transform.Translate(CubePos.transform.position);
             collision.gameObject.transform.position = CubePos.transform.position;
             cage_script.Lock();
-            _audioSource.PlayOneShot(TalkSounds);
+            //_audioSource.PlayOneShot(TalkSounds);
+            if (!TalkSounds.isPlaying)
+            {
+                TalkSounds.Play();
+            }
         }
     }
 
@@ -215,7 +232,10 @@ public class HumanScript : MonoBehaviour
                 Icon.SetActive(true);
                 _isFixing = true;
                 _animator.Play("Mad");
-                _audioSource.PlayOneShot(TalkSounds);
+                if (!TalkSounds.isPlaying)
+                {
+                    TalkSounds.Play();
+                }
                 StartCoroutine(FixStuff(other));
             }
         }
@@ -247,6 +267,15 @@ public class HumanScript : MonoBehaviour
             script.HitItem(true);
             Icon.SetActive(false);
             _isFixing = false;
+            _gameManager.CatScore--;
+            _gameManager.HumanScore++;
+            ShowScore();
         }
+    }
+
+    private void ShowScore()
+    {
+        CatScore.text = _gameManager.CatScore.ToString();
+        HumanScore.text = _gameManager.HumanScore.ToString();
     }
 }

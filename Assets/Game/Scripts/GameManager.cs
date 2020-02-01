@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
     internal KeyCode CatAction = KeyCode.E;
     internal KeyCode HumanAction = KeyCode.RightShift;
     internal bool GamePaused = false;
+    internal int CatScore = 0;
+    internal int HumanScore = 0;
     
     private void Awake()
     {
