@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; } //singletone
     
     [SerializeField] bool IsDebug = false;
-    [SerializeField] SpriteRenderer credits;
+    [SerializeField] GameObject credits;
     internal KeyCode CatRight = KeyCode.D;
     internal KeyCode CatLeft = KeyCode.A;
     internal KeyCode CatUp = KeyCode.W;
@@ -56,23 +56,28 @@ public class GameManager : MonoBehaviour
         if(!clicked_credit)
         {
             Debug.Log("credit show");
-            credits.enabled = true;
+            credits.SetActive(true);
             clicked_credit = true;
         }
         else
         {
             Debug.Log("credit hide");
-            credits.enabled = false;
+            credits.SetActive(false);
             clicked_credit = false;
         }
         
+    }
+
+    public void OnCredisBack()
+    {
+        credits.SetActive(false);
     }
     
     public void OnButtonExit()
     {
         if (clicked_credit)
         {
-            credits.enabled = false;
+            credits.SetActive(false);
             clicked_credit = false;
         }
         if (IsDebug) { Debug.Log("exit game"); }
@@ -83,7 +88,7 @@ public class GameManager : MonoBehaviour
     {
         if (clicked_credit)
         {
-            credits.enabled = false;
+            credits.SetActive(false);
             clicked_credit = false;
         }
         if (IsDebug) { Debug.Log("game ended. loading menu"); }
