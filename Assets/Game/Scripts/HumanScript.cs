@@ -9,7 +9,7 @@ public class HumanScript : MonoBehaviour
     [SerializeField] private GameObject PausePanel;
     [SerializeField] float JumpSpeed = 10;
     [SerializeField] GameObject Icon;
-    [SerializeField] GameObject Cat_Cage;
+    [SerializeField] CageScript cage_script;
     private Rigidbody2D _rigidbody2D;
     private GameManager _gameManager;
     private Animator _animator;
@@ -175,7 +175,7 @@ public class HumanScript : MonoBehaviour
         {
             if (IsDebug) { Debug.Log("human catched the cat"); }
             collision.otherCollider.transform.Translate(cat_cage_location,Space.World);
-            //Cat_Cage.lockTheCat();
+            cage_script.Lock_The_Cage();
         }
     }
 
