@@ -69,7 +69,7 @@ public class HumanScript : MonoBehaviour
         if (_timer<=0)
         {
             //gameover
-            if (!_gameManager.GamePaused  && Input.GetKey(KeyCode.Escape))
+            if (!_gameManager.GamePaused)
             {//only in human ! no need to copy on cat!
                 _gameManager.GamePaused = !_gameManager.GamePaused;
                 PausePanel.SetActive(_gameManager.GamePaused);
