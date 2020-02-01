@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IItemDestroyAndFixScript
 {
-    void HitItem(bool isFix);
+    bool HitItem(bool isFix);
 }

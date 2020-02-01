@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class CatScript : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class CatScript : MonoBehaviour
     [SerializeField] AudioSource TalkSounds;
     [SerializeField] AudioSource WalkSounds;
     [SerializeField] Text CatScore;
-    
+    [SerializeField] AudioSource[] SFX;
     private Rigidbody2D _rigidbody2D;
     private GameManager _gameManager;
     private Animator _animator;
@@ -226,11 +227,14 @@ public class CatScript : MonoBehaviour
         {
             if (IsDebug) { Debug.Log($"cat break {other.gameObject.name} successfully"); }
             var script = other.GetComponent<IItemDestroyAndFixScript>();
-            script.HitItem(false);
+            if (script.HitItem(false))
+            {
+                PlayRandomSFX();
+                _gameManager.CatScore++;
+                ShowScore();
+            }
             Icon.SetActive(false);
             _isBreaking = false;
-            _gameManager.CatScore++;
-            ShowScore();
         }
     }
     
@@ -253,5 +257,14 @@ public class CatScript : MonoBehaviour
     private void ShowScore()
     {
         CatScore.text = _gameManager.CatScore.ToString();
+    }
+    
+    private void PlayRandomSFX()
+    {
+        var rand = Random.Range(0, 3);
+        if (!SFX[rand].isPlaying)
+        {
+            SFX[rand].Play();
+        }
     }
 }

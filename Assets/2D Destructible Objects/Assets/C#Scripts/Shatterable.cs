@@ -54,15 +54,18 @@ public class Shatterable : MonoBehaviour, IItemDestroyAndFixScript, IHittable
         _shards = new List<GameObject>();
     }
 
-    public void HitItem(bool isFix)
+    public bool HitItem(bool isFix)
     {
         if (isFix && isBroken)
         {
             FixReceived();
+            return true;
         }
         else if (!isFix && !isBroken)
         {
             HitReceived();
+            return true;
         }
+        return false;
     }
 }

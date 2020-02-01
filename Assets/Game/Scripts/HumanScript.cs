@@ -14,6 +14,8 @@ public class HumanScript : MonoBehaviour
     [SerializeField] GameObject CubePos;
     [SerializeField] AudioSource TalkSounds;
     [SerializeField] AudioSource WalkSounds;
+    [SerializeField] AudioSource[] SFX;
+
     private Rigidbody2D _rigidbody2D;
     private GameManager _gameManager;
     private Animator _animator;
@@ -264,12 +266,18 @@ public class HumanScript : MonoBehaviour
         {
             if (IsDebug) { Debug.Log($"human fix {other.gameObject.name} successfully"); }
             var script = other.GetComponent<IItemDestroyAndFixScript>();
-            script.HitItem(true);
+            if (script.HitItem(true))
+            {
+                PlayRandomSFX();
+                if (_gameManager.CatScore>0)
+                {
+                    _gameManager.CatScore--;
+                }
+                _gameManager.HumanScore++;
+                ShowScore();
+            }
             Icon.SetActive(false);
             _isFixing = false;
-            _gameManager.CatScore--;
-            _gameManager.HumanScore++;
-            ShowScore();
         }
     }
 
@@ -277,5 +285,14 @@ public class HumanScript : MonoBehaviour
     {
         CatScore.text = _gameManager.CatScore.ToString();
         HumanScore.text = _gameManager.HumanScore.ToString();
+    }
+
+    private void PlayRandomSFX()
+    {
+        var rand = Random.Range(0, 3);
+        if (!SFX[rand].isPlaying)
+        {
+            SFX[rand].Play();
+        }
     }
 }
