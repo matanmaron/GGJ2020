@@ -10,6 +10,7 @@ public class CatScript : MonoBehaviour
 {
     [SerializeField] bool IsDebug = false;
     [SerializeField] float Speed = 1;
+    [SerializeField] float LadderSpeed = 2f;
     [SerializeField] float JumpSpeed = 10;
     [SerializeField] GameObject Icon;
     [SerializeField] AudioSource TalkSounds;
@@ -251,9 +252,21 @@ public class CatScript : MonoBehaviour
         var newpos = GameObject.Find(newlad);
         if (IsDebug && newpos == null){ Debug.Log("teleporting problem..."); }
 
-        transform.position = newpos.gameObject.transform.position;
+        StartCoroutine(MoveToPosition(transform,newpos.gameObject.transform.position));
     }
-    
+
+    public IEnumerator MoveToPosition(Transform transform, Vector3 position)
+    {
+        var currentPos = transform.position;
+        var t = 0f;
+        while (t < 1)
+        {
+            t += Time.deltaTime / LadderSpeed;
+            transform.position = Vector3.Lerp(currentPos, position, t);
+            yield return null;
+        }
+    }
+
     private void ShowScore()
     {
         CatScore.text = _gameManager.CatScore.ToString();
