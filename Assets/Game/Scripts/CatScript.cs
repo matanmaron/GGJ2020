@@ -8,15 +8,6 @@ using Random = UnityEngine.Random;
 
 public class CatScript : MonoBehaviour
 {
-    [SerializeField] bool IsDebug = false;
-    [SerializeField] float Speed = 1;
-    [SerializeField] float LadderSpeed = 2f;
-    [SerializeField] float JumpSpeed = 10;
-    [SerializeField] GameObject Icon;
-    [SerializeField] AudioSource TalkSounds;
-    [SerializeField] AudioSource WalkSounds;
-    [SerializeField] Text CatScore;
-    [SerializeField] AudioSource[] SFX;
     private Rigidbody2D _rigidbody2D;
     private GameManager _gameManager;
     private Animator _animator;
@@ -35,16 +26,16 @@ public class CatScript : MonoBehaviour
     
     void Start()
     {
-        if (IsDebug) { Debug.Log("*** CatScript debug is on ***"); }
+        if (GameManager.Instance.IsDebug) { Debug.Log("*** CatScript debug is on ***"); }
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _audioSource = GetComponent<AudioSource>();
-        if (IsDebug && _rigidbody2D == null) { Debug.Log("cannot find cat Rigidbody2D"); }
+        if (GameManager.Instance.IsDebug && _rigidbody2D == null) { Debug.LogError("cannot find cat Rigidbody2D"); }
         var gm = GameObject.Find("GameManager");
-        if (IsDebug && gm == null) { Debug.Log("cannot find cat GameManager"); }
+        if (GameManager.Instance.IsDebug && gm == null) { Debug.LogError("cannot find cat GameManager"); }
         _gameManager = gm.GetComponent<GameManager>();
-        if (IsDebug && gm == null) { Debug.Log("cannot find cat GameManager script"); }
+        if (GameManager.Instance.IsDebug && gm == null) { Debug.LogError("cannot find cat GameManager script"); }
         _animator = transform.gameObject.GetComponentInChildren<Animator>();
-        if (IsDebug && _animator == null) { Debug.Log("cannot find cat Animator"); }
+        if (GameManager.Instance.IsDebug && _animator == null) { Debug.LogError("cannot find cat Animator"); }
         _keyleft = _gameManager.CatLeft;
         _keyright = _gameManager.CatRight;
         _keyup = _gameManager.CatUp;
@@ -52,7 +43,7 @@ public class CatScript : MonoBehaviour
         _keyjump = _gameManager.CatJump;
         _keyAction = _gameManager.CatAction;
         _animator.Play("Idle");
-        CatScore.text = "0";
+        GameManager.Instance.CatScoreText.text = "0";
     }
     
     void LateUpdate()
@@ -70,14 +61,14 @@ public class CatScript : MonoBehaviour
     {
         if (_isBreaking && IsCatInput() && !Input.GetKey(_keyAction) && Input.anyKey)
         {
-            if (IsDebug)
+            if (GameManager.Instance.IsDebug)
             {
                 Debug.Log($"breaking stops !!!");
             }
 
             _isBreaking = false;
             StopCoroutine(BreakStuff(null)); // TODO really need this?
-            Icon.SetActive(false);
+            GameManager.Instance.CatIcon.SetActive(false);
         }
     }
 
@@ -122,22 +113,22 @@ public class CatScript : MonoBehaviour
         if (Input.GetKey(_keyleft))
         {
             //if (IsDebug) { Debug.Log("cat left"); }
-            _rigidbody2D.velocity = new Vector2(Speed * -1, _rigidbody2D.velocity.y);
+            _rigidbody2D.velocity = new Vector2(GameManager.Instance.CatSpeed * -1, _rigidbody2D.velocity.y);
             _stoped = false;
             move = true;
             _face = Face.Left;
             _changeFace = true;
             _animator.Play("Walk");
             //_audioSource.PlayOneShot(WalkSounds);
-            if (!WalkSounds.isPlaying)
+            if (!GameManager.Instance.CatWalkSounds.isPlaying)
             {
-                WalkSounds.Play();
+                GameManager.Instance.CatWalkSounds.Play();
             }
         }
         if (Input.GetKey(_keyright))
         {
             //if (IsDebug) { Debug.Log("cat right"); }
-            _rigidbody2D.velocity = new Vector2(Speed, _rigidbody2D.velocity.y);
+            _rigidbody2D.velocity = new Vector2(GameManager.Instance.CatSpeed, _rigidbody2D.velocity.y);
             _stoped = false;
             move = true;
             _face = Face.Right;
@@ -145,9 +136,9 @@ public class CatScript : MonoBehaviour
 
             _animator.Play("Walk");
             //_audioSource.PlayOneShot(WalkSounds);
-            if (!WalkSounds.isPlaying)
+            if (!GameManager.Instance.CatWalkSounds.isPlaying)
             {
-                WalkSounds.Play();
+                GameManager.Instance.CatWalkSounds.Play();
             }
         }
         
@@ -159,9 +150,9 @@ public class CatScript : MonoBehaviour
             _rigidbody2D.velocity = Vector2.zero;
             _stoped = true;
             _animator.Play("Idle");
-            if (WalkSounds.isPlaying)
+            if (GameManager.Instance.CatWalkSounds.isPlaying)
             {
-                WalkSounds.Stop();
+                GameManager.Instance.CatWalkSounds.Stop();
             }
         }
     }
@@ -170,8 +161,8 @@ public class CatScript : MonoBehaviour
     {
         if (_isGround && Input.GetKey(_keyjump))
         {
-            if (IsDebug) { Debug.Log("cat jump"); }
-            _rigidbody2D.AddForce(Vector2.up * JumpSpeed, ForceMode2D.Force );
+            if (GameManager.Instance.IsDebug) { Debug.Log("cat jump"); }
+            _rigidbody2D.AddForce(Vector2.up * GameManager.Instance.CatJumpSpeed, ForceMode2D.Force );
             _isGround = false;
             _animator.Play("Jump");  //TODO can we start in middle anim?
         }
@@ -182,7 +173,7 @@ public class CatScript : MonoBehaviour
         if(collision.gameObject.tag == "ground")
         {
             _isGround = true;
-            if (IsDebug) { Debug.Log("cat ground is: "+_isGround); }
+            if (GameManager.Instance.IsDebug) { Debug.Log($"cat ground is: {_isGround}"); }
         }
     }
     
@@ -193,27 +184,27 @@ public class CatScript : MonoBehaviour
         {
             if (Input.GetKey(_keyup))
             {
-                HandleLadders(other, Ladder.Up);
+                GameManager.Instance.HandleLadders(transform, other, GameManager.Instance.CatLadderSpeed, Ladder.Up);
             }
             else if (Input.GetKey(_keydown))
             {
-                HandleLadders(other, Ladder.Down);
+                GameManager.Instance.HandleLadders(transform, other, GameManager.Instance.CatLadderSpeed, Ladder.Down);
             }
         }
         else if (other.gameObject.tag == "item")
         {
             if (!_isBreaking && Input.GetKey(_keyAction))
             {
-                if (!TalkSounds.isPlaying)
+                if (!GameManager.Instance.CatTalkSounds.isPlaying)
                 {
-                    TalkSounds.Play();
+                    GameManager.Instance.CatTalkSounds.Play();
                 }
-                if (IsDebug)
+                if (GameManager.Instance.IsDebug)
                 {
                     Debug.Log($"breaking starts");
                 }
                 _animator.Play("sound");
-                Icon.SetActive(true);
+                GameManager.Instance.CatIcon.SetActive(true);
                 _isBreaking = true;
                 StartCoroutine(BreakStuff(other));
                 //_audioSource.PlayOneShot(TalkSounds);
@@ -226,7 +217,7 @@ public class CatScript : MonoBehaviour
         yield return new WaitForSeconds(1);
         if (_isBreaking)
         {
-            if (IsDebug) { Debug.Log($"cat break {other.gameObject.name} successfully"); }
+            if (GameManager.Instance.IsDebug) { Debug.Log($"cat break {other.gameObject.name} successfully"); }
             var script = other.GetComponent<IItemDestroyAndFixScript>();
             if (script.HitItem(false))
             {
@@ -234,50 +225,22 @@ public class CatScript : MonoBehaviour
                 _gameManager.CatScore+=2;
                 ShowScore();
             }
-            Icon.SetActive(false);
+            GameManager.Instance.CatIcon.SetActive(false);
             _isBreaking = false;
-        }
-    }
-    
-    private void HandleLadders(Collider2D other, Ladder ladder)
-    {
-        var num = other.name[1];
-        var dir = other.name[2];
-        if ((ladder == Ladder.Down && dir == 'D') || (ladder == Ladder.Up && dir == 'U'))
-        {
-            return;
-        }
-        var newdir = dir == 'U' ? 'D' : 'U';
-        var newlad = "L" + num + newdir;
-        var newpos = GameObject.Find(newlad);
-        if (IsDebug && newpos == null){ Debug.Log("teleporting problem..."); }
-
-        StartCoroutine(MoveToPosition(transform,newpos.gameObject.transform.position));
-    }
-
-    public IEnumerator MoveToPosition(Transform transform, Vector3 position)
-    {
-        var currentPos = transform.position;
-        var t = 0f;
-        while (t < 1)
-        {
-            t += Time.deltaTime / LadderSpeed;
-            transform.position = Vector3.Lerp(currentPos, position, t);
-            yield return null;
         }
     }
 
     private void ShowScore()
     {
-        CatScore.text = _gameManager.CatScore.ToString();
+        GameManager.Instance.CatScoreText.text = _gameManager.CatScore.ToString();
     }
     
     private void PlayRandomSFX()
     {
         var rand = Random.Range(0, 3);
-        if (!SFX[rand].isPlaying)
+        if (!GameManager.Instance.CatSFX[rand].isPlaying)
         {
-            SFX[rand].Play();
+            GameManager.Instance.CatSFX[rand].Play();
         }
     }
 }

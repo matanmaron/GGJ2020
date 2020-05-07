@@ -8,21 +8,7 @@ using Random = UnityEngine.Random;
 
 public class HumanScript : MonoBehaviour
 {
-    [SerializeField] bool IsDebug = false;
-    [SerializeField] float Speed = 1;
-    [SerializeField] private GameObject PausePanel;
-    [SerializeField] private GameObject UIPanel;
-    [SerializeField] private GameObject GameOverPanel;
-    [SerializeField] float JumpSpeed = 10;
-    [SerializeField] GameObject Icon;
-    [SerializeField] CageScript cage_script;
-    [SerializeField] GameObject CubePos;
-    [SerializeField] AudioSource TalkSounds;
-    [SerializeField] AudioSource WalkSounds;
-    [SerializeField] AudioSource[] SFX;
-
     private Rigidbody2D _rigidbody2D;
-    private GameManager _gameManager;
     private Animator _animator;
     private AudioSource _audioSource;
     private KeyCode _keyleft;
@@ -37,59 +23,29 @@ public class HumanScript : MonoBehaviour
     private bool _isGround = false;
     private bool _tuchedCat = false;
     private bool _isFixing = false;
-    [SerializeField] Text CatScore;
-    [SerializeField] Text HumanScore;
-    [SerializeField] Text UITimer;
-    private float _timer;
+
     void Start()
     {
-        if (IsDebug) { Debug.Log("*** HumanScript debug is on ***"); }
+        if (GameManager.Instance.IsDebug) { Debug.Log("*** HumanScript debug is on ***"); }
         _rigidbody2D = GetComponent<Rigidbody2D>();
-        if (IsDebug && _rigidbody2D == null) { Debug.Log("cannot find human Rigidbody2D"); }
+        if (GameManager.Instance.IsDebug && _rigidbody2D == null) { Debug.LogError("cannot find human Rigidbody2D"); }
         var gm = GameObject.Find("GameManager");
-        if (IsDebug && gm == null) { Debug.Log("cannot find human GameManager"); }
-        _gameManager = gm.GetComponent<GameManager>();
-        if (IsDebug && gm == null) { Debug.Log("cannot find human GameManager script"); }
+        if (GameManager.Instance.IsDebug && gm == null) { Debug.LogError("cannot find human GameManager"); }
+        if (GameManager.Instance.IsDebug && gm == null) { Debug.LogError("cannot find human GameManager script"); }
         _animator = transform.gameObject.GetComponentInChildren<Animator>();
-        if (IsDebug && _animator == null) { Debug.Log("cannot find human Animator"); }
-        _keyleft = _gameManager.HumanLeft;
-        _keyright = _gameManager.HumanRight;
-        _keyup = _gameManager.HumanUp;
-        _keydown = _gameManager.HumanDown;
-        _keyjump = _gameManager.HumanJump;
-        _keyAction = _gameManager.HumanAction;
+        if (GameManager.Instance.IsDebug && _animator == null) { Debug.LogError("cannot find human Animator"); }
+        _keyleft = GameManager.Instance.HumanLeft;
+        _keyright = GameManager.Instance.HumanRight;
+        _keyup = GameManager.Instance.HumanUp;
+        _keydown = GameManager.Instance.HumanDown;
+        _keyjump = GameManager.Instance.HumanJump;
+        _keyAction = GameManager.Instance.HumanAction;
         _animator.Play("Idle");
-        HumanScore.text = "0";
-        CatScore.text = "0";
-        _timer = 120;
-        _gameManager.GamePaused = false;
-    }
-
-    private void Update()
-    {
-        if (!_gameManager.GamePaused)
-        {
-            _timer = _timer - Time.deltaTime;
-            UITimer.text = Mathf.RoundToInt(_timer).ToString();
-            if (_timer <= 0)
-            {
-                //gameover
-                _gameManager.GamePaused = true;
-                GameOverPanel.SetActive(true);
-                GameOverPanel.GetComponent<GameOverScript>().Win(_gameManager);
-            }
-        }
     }
 
     void LateUpdate()
     {
-        if (!_gameManager.GamePaused  && Input.GetKey(KeyCode.Escape))
-        {//only in human ! no need to copy on cat!
-            _gameManager.GamePaused = !_gameManager.GamePaused;
-            PausePanel.SetActive(_gameManager.GamePaused);
-            UIPanel.SetActive(!_gameManager.GamePaused);
-        }
-        if (!_gameManager.GamePaused)
+        if (!GameManager.Instance.GamePaused)
         {
             StopFix();
             Move();
@@ -102,14 +58,14 @@ public class HumanScript : MonoBehaviour
     {
         if (_isFixing && IsHumanInput() && !Input.GetKey(_keyAction) && Input.anyKey)
         {
-            if (IsDebug)
+            if (GameManager.Instance.IsDebug)
             {
                 Debug.Log($"breaking stops !!!");
             }
 
             _isFixing = false;
             StopCoroutine(FixStuff(null)); // TODO really need this?
-            Icon.SetActive(false);
+            GameManager.Instance.HumanIcon.SetActive(false);
         }
     }
 
@@ -154,38 +110,38 @@ public class HumanScript : MonoBehaviour
         if (Input.GetKey(_keyleft))
         {
             //if (IsDebug) { Debug.Log("human left"); }
-            _rigidbody2D.velocity = new Vector2(Speed * -1, _rigidbody2D.velocity.y);
+            _rigidbody2D.velocity = new Vector2(GameManager.Instance.HumanSpeed * -1, _rigidbody2D.velocity.y);
             stoped = false;
             move = true;
             _face = Face.Left;
             _changeFace = true;
             _animator.Play("Walk");
             //_audioSource.PlayOneShot(WalkSounds);
-            if (!WalkSounds.isPlaying)
+            if (!GameManager.Instance.HumanWalkSounds.isPlaying)
             {
-                WalkSounds.Play();
+                GameManager.Instance.HumanWalkSounds.Play();
             }
         }
         if (Input.GetKey(_keyright))
         {
             //if (IsDebug) { Debug.Log("human right"); }
-            _rigidbody2D.velocity = new Vector2(Speed, _rigidbody2D.velocity.y);
+            _rigidbody2D.velocity = new Vector2(GameManager.Instance.HumanSpeed, _rigidbody2D.velocity.y);
             stoped = false;
             move = true;
             _face = Face.Right;
             _changeFace = true;
             _animator.Play("Walk");
-            if (!WalkSounds.isPlaying)
+            if (!GameManager.Instance.HumanWalkSounds.isPlaying)
             {
-                WalkSounds.Play();
+                GameManager.Instance.HumanWalkSounds.Play();
             }
         }
 
         if (!move && !stoped)
         {
-            if (WalkSounds.isPlaying)
+            if (GameManager.Instance.HumanWalkSounds.isPlaying)
             {
-                WalkSounds.Stop();
+                GameManager.Instance.HumanWalkSounds.Stop();
             }
             //if (IsDebug) { Debug.Log("human stop"); }
             _rigidbody2D.velocity = Vector2.zero;
@@ -194,20 +150,12 @@ public class HumanScript : MonoBehaviour
         }
     }
     
-    public void OnButtonResume()
-    {
-        _gameManager.GamePaused = !_gameManager.GamePaused;
-        PausePanel.SetActive(_gameManager.GamePaused);
-        UIPanel.SetActive(!_gameManager.GamePaused);
-        if (IsDebug) { Debug.Log("pause is " + _gameManager.GamePaused); }
-    }
-    
     private void DoJump()
     {
         if (_isGround && Input.GetKey(_keyjump))
         {
-            if (IsDebug) { Debug.Log("human jump"); }
-            _rigidbody2D.AddForce(Vector2.up * JumpSpeed, ForceMode2D.Force );
+            if (GameManager.Instance.IsDebug) { Debug.Log("human jump"); }
+            _rigidbody2D.AddForce(Vector2.up * GameManager.Instance.HumanJumpSpeed, ForceMode2D.Force );
             _isGround = false;
             _animator.Play("Jump");
         }
@@ -218,18 +166,18 @@ public class HumanScript : MonoBehaviour
         if(collision.gameObject.tag == "ground")
         {
             _isGround = true;
-            if (IsDebug) { Debug.Log("human ground is: "+_isGround); }
+            if (GameManager.Instance.IsDebug) { Debug.Log("human ground is: "+_isGround); }
         }
         if(collision.gameObject.tag =="cat")
         {
-            if (IsDebug) { Debug.Log("human catched the cat"); }
+            if (GameManager.Instance.IsDebug) { Debug.Log("human catched the cat"); }
             //collision.transform.Translate(CubePos.transform.position);
-            collision.gameObject.transform.position = CubePos.transform.position;
-            cage_script.Lock();
+            collision.gameObject.transform.position = GameManager.Instance.CubePos.transform.position;
+            GameManager.Instance.cage_script.Lock();
             //_audioSource.PlayOneShot(TalkSounds);
-            if (!TalkSounds.isPlaying)
+            if (!GameManager.Instance.HumanTalkSounds.isPlaying)
             {
-                TalkSounds.Play();
+                GameManager.Instance.HumanTalkSounds.Play();
             }
         }
     }
@@ -241,52 +189,32 @@ public class HumanScript : MonoBehaviour
         {
             if (Input.GetKey(_keyup))
             {
-                HandleLadders(other, Ladder.Up);
+                GameManager.Instance.HandleLadders(transform, other, GameManager.Instance.HumanLadderSpeed, Ladder.Up);
             }
             else if (Input.GetKey(_keydown))
             {
-                HandleLadders(other, Ladder.Down);
+                GameManager.Instance.HandleLadders(transform, other, GameManager.Instance.HumanLadderSpeed, Ladder.Down);
             }
         }
         else if (other.gameObject.tag == "item")
         {
             if (!_isFixing && Input.GetKey(_keyAction))
             {
-                if (IsDebug)
+                if (GameManager.Instance.IsDebug)
                 {
                     Debug.Log($"fixing starts");
                 }
                 //_animator.Play("sound");
-                Icon.SetActive(true);
+                GameManager.Instance.HumanIcon.SetActive(true);
                 _isFixing = true;
                 _animator.Play("Mad");
-                if (!TalkSounds.isPlaying)
+                if (!GameManager.Instance.HumanTalkSounds.isPlaying)
                 {
-                    TalkSounds.Play();
+                    GameManager.Instance.HumanTalkSounds.Play();
                 }
                 StartCoroutine(FixStuff(other));
             }
         }
-    }
-
-    private void HandleLadders(Collider2D other, Ladder ladder)
-    {
-        var num = other.name[1];
-        if (num == 52 || num == 53)
-        {
-            return;
-        }
-        var dir = other.name[2];
-        if ((ladder == Ladder.Down && dir == 'D') || (ladder == Ladder.Up && dir == 'U'))
-        {
-            return;
-        }
-        var newdir = dir == 'U' ? 'D' : 'U';
-        var newlad = "L" + num + newdir;
-        var newpos = GameObject.Find(newlad);
-        if (IsDebug && newpos == null){ Debug.Log("teleporting problem..."); }
-
-        transform.position = newpos.gameObject.transform.position;
     }
 
     IEnumerator FixStuff(Collider2D other)
@@ -294,31 +222,25 @@ public class HumanScript : MonoBehaviour
         yield return new WaitForSeconds(2);
         if (_isFixing)
         {
-            if (IsDebug) { Debug.Log($"human fix {other.gameObject.name} successfully"); }
+            if (GameManager.Instance.IsDebug) { Debug.Log($"human fix {other.gameObject.name} successfully"); }
             var script = other.GetComponent<IItemDestroyAndFixScript>();
             if (script.HitItem(true))
             {
                 PlayRandomSFX();
-                _gameManager.HumanScore+=3;
-                ShowScore();
+                GameManager.Instance.HumanScore+=3;
+                GameManager.Instance.ShowScore();
             }
-            Icon.SetActive(false);
+            GameManager.Instance.HumanIcon.SetActive(false);
             _isFixing = false;
         }
-    }
-
-    private void ShowScore()
-    {
-        CatScore.text = _gameManager.CatScore.ToString();
-        HumanScore.text = _gameManager.HumanScore.ToString();
     }
 
     private void PlayRandomSFX()
     {
         var rand = Random.Range(0, 3);
-        if (!SFX[rand].isPlaying)
+        if (!GameManager.Instance.HumanSFX[rand].isPlaying)
         {
-            SFX[rand].Play();
+            GameManager.Instance.HumanSFX[rand].Play();
         }
     }
 

@@ -96,6 +96,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -424,6 +425,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -747,6 +749,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -779,6 +782,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 135027639}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!82 &244892818 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1719353404761593363, guid: 7c535c55443104326b1a4084b23333e5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1725507627088737558}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &250624895
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1130,6 +1139,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1207,6 +1217,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1315,6 +1326,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1347,6 +1359,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 336292769}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &336394147 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7461862551020957564, guid: 7c535c55443104326b1a4084b23333e5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1725507627088737558}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &356528822
 GameObject:
   m_ObjectHideFlags: 0
@@ -1886,6 +1904,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2007,6 +2026,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 437637358}
   m_CullTransparentMesh: 0
+--- !u!82 &449726354 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 9088962154330661892, guid: 7c535c55443104326b1a4084b23333e5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1725507627088737558}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &450226984
 GameObject:
   m_ObjectHideFlags: 0
@@ -2080,6 +2105,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2239,7 +2265,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 476685313}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6f9d800a5c59443cb713ae9899fbd71, type: 3}
+  m_Script: {fileID: 11500000, guid: 87dbf2f53a0d4514eb73fe138b1f75f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &485339340
@@ -2315,6 +2341,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2528,6 +2555,12 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!82 &555092723 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 6012765475139312654, guid: 196e3f9e8e60045f88527e4fa39ff69c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5471356974299766284}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &563557945
 GameObject:
   m_ObjectHideFlags: 0
@@ -2601,6 +2634,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2706,6 +2740,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2811,6 +2846,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2843,6 +2879,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 664205045}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!82 &679608039 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1234226575, guid: 196e3f9e8e60045f88527e4fa39ff69c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5471356974299766284}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &685711295
 GameObject:
   m_ObjectHideFlags: 0
@@ -2965,6 +3007,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -3304,6 +3347,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -3444,6 +3488,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -3575,7 +3620,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1940494047}
+      - m_Target: {fileID: 1590790916}
         m_MethodName: OnButtonResume
         m_Mode: 1
         m_Arguments:
@@ -3772,6 +3817,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -3883,6 +3929,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4503,6 +4550,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1155809879}
   m_CullTransparentMesh: 0
+--- !u!82 &1162101932 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 214755838, guid: 196e3f9e8e60045f88527e4fa39ff69c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5471356974299766284}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1193691265
 GameObject:
   m_ObjectHideFlags: 0
@@ -4576,6 +4629,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4647,6 +4701,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1248120922 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 186253028393360305, guid: 7c535c55443104326b1a4084b23333e5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1725507627088737558}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1314542828
 GameObject:
   m_ObjectHideFlags: 0
@@ -4720,6 +4780,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4860,6 +4921,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4965,6 +5027,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -5133,6 +5196,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -5238,6 +5302,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -5270,6 +5335,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1484961028}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!82 &1538712922 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8881571489757820253, guid: 7c535c55443104326b1a4084b23333e5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1725507627088737558}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1539855331
 GameObject:
   m_ObjectHideFlags: 0
@@ -5343,6 +5414,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -5587,6 +5659,24 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1417865604893294619}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1590790916 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6493312818472987325, guid: 4aa72ffec7e1d4cc2bb3f1872d7a12ef,
+    type: 3}
+  m_PrefabInstance: {fileID: 6493312818297773344}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be869615ca6254ba98cb887203f2dc59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!82 &1619343460 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7473301988828586965, guid: 7c535c55443104326b1a4084b23333e5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1725507627088737558}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1625549058
 GameObject:
   m_ObjectHideFlags: 0
@@ -5598,7 +5688,6 @@ GameObject:
   - component: {fileID: 1625549059}
   - component: {fileID: 1625549061}
   - component: {fileID: 1625549060}
-  - component: {fileID: 1625549062}
   m_Layer: 5
   m_Name: GameOverPanel
   m_TagString: Untagged
@@ -5670,23 +5759,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1625549058}
   m_CullTransparentMesh: 0
---- !u!114 &1625549062
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1625549058}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84eff96bfe1fd434285fe6829b81dfbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  catholder: {fileID: 4410162561932277260}
-  humanholder: {fileID: 2326003552055076075}
-  catscoreui: {fileID: 129130073}
-  humanscoreui: {fileID: 453828800}
-  wintext: {fileID: 356528824}
 --- !u!1 &1650837839
 GameObject:
   m_ObjectHideFlags: 0
@@ -5837,6 +5909,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -5971,8 +6044,9 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1760707798}
   m_Enabled: 1
-  serializedVersion: 9
+  serializedVersion: 10
   m_Type: 1
+  m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 10
@@ -6110,6 +6184,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -6215,6 +6290,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -6320,6 +6396,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -6525,6 +6602,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -6634,6 +6712,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1859100772}
   m_CullTransparentMesh: 0
+--- !u!82 &1879534004 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2930317616148434506, guid: 196e3f9e8e60045f88527e4fa39ff69c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5471356974299766284}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1881472345
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6770,6 +6854,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -6814,6 +6899,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 406e6ea1f96144267b277426701335d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &1942111472 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4482242943455224141, guid: 7c535c55443104326b1a4084b23333e5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1725507627088737558}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1952568254
 GameObject:
   m_ObjectHideFlags: 0
@@ -6887,6 +6978,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -6919,6 +7011,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1952568254}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1994860144 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 185002653187433350, guid: 196e3f9e8e60045f88527e4fa39ff69c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5471356974299766284}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2031868715
 GameObject:
   m_ObjectHideFlags: 0
@@ -7119,6 +7217,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -7393,6 +7492,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -7456,6 +7556,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -7801,6 +7902,7 @@ SkinnedMeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -7921,6 +8023,7 @@ SkinnedMeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -7981,6 +8084,7 @@ SkinnedMeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -8043,6 +8147,7 @@ SkinnedMeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -8106,6 +8211,7 @@ SkinnedMeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -8164,6 +8270,7 @@ SkinnedMeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -14556,6 +14663,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -24905,6 +25013,7 @@ SkinnedMeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -25675,6 +25784,176 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 6493312818472987325, guid: 4aa72ffec7e1d4cc2bb3f1872d7a12ef,
+        type: 3}
+      propertyPath: CatSFX.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6493312818472987325, guid: 4aa72ffec7e1d4cc2bb3f1872d7a12ef,
+        type: 3}
+      propertyPath: HumanSFX.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6493312818472987325, guid: 4aa72ffec7e1d4cc2bb3f1872d7a12ef,
+        type: 3}
+      propertyPath: CatWalkSounds
+      value: 
+      objectReference: {fileID: 1942111472}
+    - target: {fileID: 6493312818472987325, guid: 4aa72ffec7e1d4cc2bb3f1872d7a12ef,
+        type: 3}
+      propertyPath: CatTalkSounds
+      value: 
+      objectReference: {fileID: 1248120922}
+    - target: {fileID: 6493312818472987325, guid: 4aa72ffec7e1d4cc2bb3f1872d7a12ef,
+        type: 3}
+      propertyPath: CatIcon
+      value: 
+      objectReference: {fileID: 336394147}
+    - target: {fileID: 6493312818472987325, guid: 4aa72ffec7e1d4cc2bb3f1872d7a12ef,
+        type: 3}
+      propertyPath: HumanIcon
+      value: 
+      objectReference: {fileID: 1994860144}
+    - target: {fileID: 6493312818472987325, guid: 4aa72ffec7e1d4cc2bb3f1872d7a12ef,
+        type: 3}
+      propertyPath: HumanWalkSounds
+      value: 
+      objectReference: {fileID: 679608039}
+    - target: {fileID: 6493312818472987325, guid: 4aa72ffec7e1d4cc2bb3f1872d7a12ef,
+        type: 3}
+      propertyPath: HumanTalkSounds
+      value: 
+      objectReference: {fileID: 1162101932}
+    - target: {fileID: 6493312818472987325, guid: 4aa72ffec7e1d4cc2bb3f1872d7a12ef,
+        type: 3}
+      propertyPath: CubePos
+      value: 
+      objectReference: {fileID: 2077118978}
+    - target: {fileID: 6493312818472987325, guid: 4aa72ffec7e1d4cc2bb3f1872d7a12ef,
+        type: 3}
+      propertyPath: PausePanel
+      value: 
+      objectReference: {fileID: 1105084633}
+    - target: {fileID: 6493312818472987325, guid: 4aa72ffec7e1d4cc2bb3f1872d7a12ef,
+        type: 3}
+      propertyPath: GameOverPanel
+      value: 
+      objectReference: {fileID: 1625549058}
+    - target: {fileID: 6493312818472987325, guid: 4aa72ffec7e1d4cc2bb3f1872d7a12ef,
+        type: 3}
+      propertyPath: UIPanel
+      value: 
+      objectReference: {fileID: 367564018}
+    - target: {fileID: 6493312818472987325, guid: 4aa72ffec7e1d4cc2bb3f1872d7a12ef,
+        type: 3}
+      propertyPath: CatScoreText
+      value: 
+      objectReference: {fileID: 378860124}
+    - target: {fileID: 6493312818472987325, guid: 4aa72ffec7e1d4cc2bb3f1872d7a12ef,
+        type: 3}
+      propertyPath: CatSFX.Array.data[0]
+      value: 
+      objectReference: {fileID: 244892818}
+    - target: {fileID: 6493312818472987325, guid: 4aa72ffec7e1d4cc2bb3f1872d7a12ef,
+        type: 3}
+      propertyPath: CatSFX.Array.data[1]
+      value: 
+      objectReference: {fileID: 449726354}
+    - target: {fileID: 6493312818472987325, guid: 4aa72ffec7e1d4cc2bb3f1872d7a12ef,
+        type: 3}
+      propertyPath: CatSFX.Array.data[2]
+      value: 
+      objectReference: {fileID: 1619343460}
+    - target: {fileID: 6493312818472987325, guid: 4aa72ffec7e1d4cc2bb3f1872d7a12ef,
+        type: 3}
+      propertyPath: CatSFX.Array.data[3]
+      value: 
+      objectReference: {fileID: 1538712922}
+    - target: {fileID: 6493312818472987325, guid: 4aa72ffec7e1d4cc2bb3f1872d7a12ef,
+        type: 3}
+      propertyPath: HumanSFX.Array.data[0]
+      value: 
+      objectReference: {fileID: 1879534004}
+    - target: {fileID: 6493312818472987325, guid: 4aa72ffec7e1d4cc2bb3f1872d7a12ef,
+        type: 3}
+      propertyPath: HumanSFX.Array.data[1]
+      value: 
+      objectReference: {fileID: 555092723}
+    - target: {fileID: 6493312818472987325, guid: 4aa72ffec7e1d4cc2bb3f1872d7a12ef,
+        type: 3}
+      propertyPath: HumanSFX.Array.data[2]
+      value: 
+      objectReference: {fileID: 5471356974299766286}
+    - target: {fileID: 6493312818472987325, guid: 4aa72ffec7e1d4cc2bb3f1872d7a12ef,
+        type: 3}
+      propertyPath: HumanSFX.Array.data[3]
+      value: 
+      objectReference: {fileID: 5471356974299766285}
+    - target: {fileID: 6493312818472987325, guid: 4aa72ffec7e1d4cc2bb3f1872d7a12ef,
+        type: 3}
+      propertyPath: cage_script
+      value: 
+      objectReference: {fileID: 423511446}
+    - target: {fileID: 6493312818472987325, guid: 4aa72ffec7e1d4cc2bb3f1872d7a12ef,
+        type: 3}
+      propertyPath: HumanSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6493312818472987325, guid: 4aa72ffec7e1d4cc2bb3f1872d7a12ef,
+        type: 3}
+      propertyPath: CatSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6493312818472987325, guid: 4aa72ffec7e1d4cc2bb3f1872d7a12ef,
+        type: 3}
+      propertyPath: catholder
+      value: 
+      objectReference: {fileID: 4410162561932277260}
+    - target: {fileID: 6493312818472987325, guid: 4aa72ffec7e1d4cc2bb3f1872d7a12ef,
+        type: 3}
+      propertyPath: humanholder
+      value: 
+      objectReference: {fileID: 2326003552055076075}
+    - target: {fileID: 6493312818472987325, guid: 4aa72ffec7e1d4cc2bb3f1872d7a12ef,
+        type: 3}
+      propertyPath: wintext
+      value: 
+      objectReference: {fileID: 356528824}
+    - target: {fileID: 6493312818472987325, guid: 4aa72ffec7e1d4cc2bb3f1872d7a12ef,
+        type: 3}
+      propertyPath: catscoreui
+      value: 
+      objectReference: {fileID: 129130073}
+    - target: {fileID: 6493312818472987325, guid: 4aa72ffec7e1d4cc2bb3f1872d7a12ef,
+        type: 3}
+      propertyPath: humanscoreui
+      value: 
+      objectReference: {fileID: 453828800}
+    - target: {fileID: 6493312818472987325, guid: 4aa72ffec7e1d4cc2bb3f1872d7a12ef,
+        type: 3}
+      propertyPath: UITimerText
+      value: 
+      objectReference: {fileID: 1155809881}
+    - target: {fileID: 6493312818472987325, guid: 4aa72ffec7e1d4cc2bb3f1872d7a12ef,
+        type: 3}
+      propertyPath: HumanScoreText
+      value: 
+      objectReference: {fileID: 738251825}
+    - target: {fileID: 6493312818472987325, guid: 4aa72ffec7e1d4cc2bb3f1872d7a12ef,
+        type: 3}
+      propertyPath: CatLadderSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6493312818472987325, guid: 4aa72ffec7e1d4cc2bb3f1872d7a12ef,
+        type: 3}
+      propertyPath: CatJumpSpeed
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 6493312818472987325, guid: 4aa72ffec7e1d4cc2bb3f1872d7a12ef,
+        type: 3}
+      propertyPath: HumanJumpSpeed
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 6493312818472987326, guid: 4aa72ffec7e1d4cc2bb3f1872d7a12ef,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -25842,6 +26121,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -25907,6 +26187,7 @@ SkinnedMeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
